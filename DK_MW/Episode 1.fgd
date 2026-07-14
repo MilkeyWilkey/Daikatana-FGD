@@ -47,7 +47,7 @@
 
 @PointClass base(Appearflags, MonsterFlags) color(1 0.5 0) size(-16 -16 -16, 16 16 16) model({ "path": "models/e1/a1_rockgun.dkm" }) = monster_rockgat : "Rockgat"
 [
-	fire_rate(float): "secs between firing default = 0.20" : 0.20
+	fire_rate(float): "secs between firing default = 0.20" : "0.20"
 	range(integer): "attack radius default = 512" : 512
 	basedmg(integer): "dmg done with a hit"
 	rnddmg(integer): "random damage amount added on"
@@ -80,7 +80,7 @@
 @PointClass base(Appearflags, DecorationFlags) color(1 0 0) size(-8 -8 -32, 8 8 32) = deco_e1 : "Episode 1 decoration"
 [
 	damage(integer): "damage applied when exploding. Default is 15." : 15
-	scale(float): "Scale of deco. Default 1.0." : 1.0
+	scale(float): "Scale of deco. Default 1.0." : "1.0"
 	model(string): "choose model # -- see list."
 	mass(float): "*optional* - including this overrides the mass value in decoinfo.txt" 
 	frame(integer): "allows you to specify the starting frame for the model."

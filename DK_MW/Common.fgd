@@ -220,7 +220,7 @@
 	]
 	
 	model(string) : "Sprite model name"
-	scale(float) : "Sprite model scale" : 1.0
+	scale(float) : "Sprite model scale" : "1.0"
 ]
 
 @PointClass base(Appearflags, LightStyleFX) color(0 1 0) size(-8 -8 -8, 8 8 8) = light_walltorch : "Light (Walltorch)"
@@ -331,13 +331,13 @@
 		1024 : "SCORCH" : 0
 	]
 
-	delay(float) : "time between strikes (default 2.0)" : 2.0
-	dmg(float) : "damage if a PLAYER gets hit (default 0.0) based on duration (default 0.5<meaning 5x dmg)" : 0.5
-	scale(float) : "set the scale of the lightning model (default 4.0)" : 4.0
-	chance(float) : "pct chance a player will be hit (default 0.10)" : 0.10
+	delay(float) : "time between strikes (default 2.0)" : "2.0"
+	dmg(float) : "damage if a PLAYER gets hit (default 0.0) based on duration (default 0.5<meaning 5x dmg)" : "0.5"
+	scale(float) : "set the scale of the lightning model (default 4.0)" : "4.0"
+	chance(float) : "pct chance a player will be hit (default 0.10)" : "0.10"
 	modulation(float) : "% of modulation to apply to lightning. Scalar value."
 	_color(color255) : "Color of lightning. (Use 'k')"
-	gndchance(float) : "if GROUND STRIKES is checked, chance for ground hit (default 0.20)" : 0.20
+	gndchance(float) : "if GROUND STRIKES is checked, chance for ground hit (default 0.20)" : "0.20"
 	duration(float) : "Period of time that lightning will exist during its strike.(scalar)"
 	sound(string) : "wave file to play when lightning strikes (random if > 1 defined)"
 	sound1(string) : "wave file to play when lightning strikes (random if > 1 defined)"
@@ -355,11 +355,11 @@
 		8 : "FREEZE_SPRAY" : 0		
 	]
 
-	delay(float) : "time between jets (default 6.0)" : 6.0
-	duration(float) : "length of time to spray (default 2.0)" : 2.0
+	delay(float) : "time between jets (default 6.0)" : "6.0"
+	duration(float) : "length of time to spray (default 2.0)" : "2.0"
 	vector(vector) : "direction/distance to jet steam"
-	damage(float) : "damage if a PLAYER gets hit (default 0.0)" : 0.0
-	scale(float) : "set the scale of the steam sprite (default 1.0)" : 1.0
+	damage(float) : "damage if a PLAYER gets hit (default 0.0)" : "0.0"
+	scale(float) : "set the scale of the steam sprite (default 1.0)" : "1.0"
 	sound(string) : "sound played while steam is jetting"
 ]
 
@@ -393,7 +393,7 @@
 	scale(float): "The size of the particles (!< 0.01f !>200.0f)"
 	delta_alpha(float): "The decay rate of the particle's life time"
 	alpha_level(float): "The initial state of the Alpha level"
-	gravity(float): "How much gravity to apply to particles." : 0
+	gravity(float): "How much gravity to apply to particles." : "0"
 	gravitydir(string): "Name of target that gravity will be applied towards." : "down"
 	stoptime(integer): "Time for the SFX Particle generator to spit out particles before it completely shuts down"
 	radius(integer): "Radius spread for spawning particles"
@@ -448,8 +448,8 @@
 @PointClass base(Appearflags, Target) color(1 0.5 0) size(-8 -8 -8, 8 8 8) = misc_lavaball_toss : "Lavaball toss"
 [
 	// target(target_destination) : "can be triggered"
-	mintime(float) : "minimum time between tosses (default = 4.0 seconds)" : 4.0
-	maxtime(float) : "maximum time between tosses (default = 12.0 seconds)" : 12.0
+	mintime(float) : "minimum time between tosses (default = 4.0 seconds)" : "4.0"
+	maxtime(float) : "maximum time between tosses (default = 12.0 seconds)" : "12.0"
 	damage(integer) : "damage to do when an hitting something"
 	upmin(integer) : "minimum upward velocity (default = 200)" : 200
 	upmax(integer) : "maximum upward velocity (default = 800)" : 800
@@ -624,7 +624,7 @@
 	sound_use(string): "the sound to play when the button is used (defaults to none)"
 	sound_return(string): "the sound to play when the button returns (defaults to none)"
 	speed(integer): "rate of travel when button moves"
-	wait(float): "seconds to wait befor returning to useable (-1 = never return) (default 1.0)" : 1.0
+	wait(float): "seconds to wait befor returning to useable (-1 = never return) (default 1.0)" : "1.0"
 	angle(integer): "direction of travel"
 	lip(integer): "amount of button left sticking out after being pushed (default 4)" : 4
 	health(integer): "when > 0 the button must be killed in order to fire"
@@ -807,13 +807,13 @@
 
 	damage(integer): "radius explosion of that amount, at center of brush"
 	health(integer): "defaults to 100." : 100
-	delay(float): "defaults to 1.0 to randomize the emission of debris chunks. The higher the number the longer it will take some chunks to chunk out." : 1.0
+	delay(float): "defaults to 1.0 to randomize the emission of debris chunks. The higher the number the longer it will take some chunks to chunk out." : "1.0"
 	count(integer): "defaults to 10.  This determines how many chunks are emitted. 10 = maximum of 10 chunks but is random so could be 5-10, no less than 5." : 10
 	rndcount(integer): "defaults to 0. Random number of debris entities plus the count." : 0
-	scale(float): "This is the scale factor of the chunks. 1.0 is current Size." : 1.0
+	scale(float): "This is the scale factor of the chunks. 1.0 is current Size." : "1.0"
 	vectortarget(integer): "Sets the vector for the initial direction. It will be random in a 180 degree spread."
-	speed(float): "is a scaled value. 1.0 is normal speed." : 1.0
-	gravity(float): "Gravity to apply to debris. Default is 1.0.(normal)" : 1.0
+	speed(float): "is a scaled value. 1.0 is normal speed." : "1.0"
+	gravity(float): "Gravity to apply to debris. Default is 1.0.(normal)" : "1.0"
 	cinescript(string): "name of the cinematic script to run"
 	aiscript(string): "name of the AI script to run"
 	volume(float): "0.0 to 1.0"
@@ -940,8 +940,8 @@
 		8: "MIKIKO_REQUIRED" : 0
 	]
 
-	wait(float): "time to wait between retriggering (default = 2.0 seconds)" : 2.0
-	delay(float): "delay after triggering before script runs ** doesn't work with touch triggers ** (default = 0.0 seconds)" : 0.0
+	wait(float): "time to wait between retriggering (default = 2.0 seconds)" : "2.0"
+	delay(float): "delay after triggering before script runs ** doesn't work with touch triggers ** (default = 0.0 seconds)" : "0.0"
 	cinescript(string): "name of the cinematic script to run"
 	aiscript(string): "name of the AI script to run"
 	scriptname(string): "name of script to run"
@@ -999,7 +999,7 @@
 
 	health(integer): "if set the trigger must be killed to activate"
 	delay(integer): "time to wait after activation before firing target"
-	wait(float): "time to wait between retriggering (default = 0.2 seconds)" : 0.2
+	wait(float): "time to wait between retriggering (default = 0.2 seconds)" : "0.2"
 ]
 
 @SolidClass base(Appearflags) color(0.5 0.5 0.5) = trigger_sidekick_teleport : "Teleport sidekick"
@@ -1098,7 +1098,7 @@
 
 	health(integer): "if set the trigger must be killed to activate"
 	delay(integer): "time to wait after activation before firing target"
-	wait(float): "time to wait between retriggering (default = 0.2 seconds)" : 0.2
+	wait(float): "time to wait between retriggering (default = 0.2 seconds)" : "0.2"
 	sound(string): "name of sound to play upon firing"
 	killtarget(target_destination): "the targetname of the entity to remove when triggered"
 	message(string): "text message to display when triggered"
@@ -1309,7 +1309,7 @@
 	speed(integer): "speed of particles (default=5)" : 5
 	count(integer): "number of particles to create (default=10) (max=64)" : 10
 	length(integer): "length in seconds to spawn particles (default = 1 frame)" : 1
-	frametime(float): "length of time between particle spawns (default=0.10)" : 0.10 
+	frametime(float): "length of time between particle spawns (default=0.10)" : "0.10"
 	sound(string): "wave file to play when the particles are spawned"
 ]
 
@@ -1339,9 +1339,9 @@
 	]
 
 	damage(integer): "damage applied when exploding. Default is 15." : 15
-	scale(float): "Scale of deco. Default 1.0." : 1.0
+	scale(float): "Scale of deco. Default 1.0." : "1.0"
 	model(string): "filename of .dkm model, e.g. models/e1/a_c4.dkm"
-	mass(float): "default 1.0" : 1.0
+	mass(float): "default 1.0" : "1.0"
 	frame(integer): "allows you to specify the starting frame for the model."
 	x_speed(integer): "speed to rotate along x axis in degrees per second"
 	y_speed(integer): "speed to rotate along y axis in degrees per second"
