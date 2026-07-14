@@ -1460,12 +1460,12 @@
 //
 // Animals
 //
-@PointClass base(Animal) model({ "path": "models/global/d4_gull.dkm" }) = e_seagull : "Seagull" []
+@PointClass base(Animal) model({ "path": "models/global/d4_gull.dkm", "scale" : "0.5 0.5 0.5" }) = e_seagull : "Seagull" []
 @PointClass base(Animal) model({ "path": "models/global/e_goldfish.dkm" }) = fish_goldfish : "Goldfish" []
 @PointClass base(Animal) model({ "path": "models/global/e_greyfish.dkm" }) = fish_grayfish : "Grayfish" []
 @PointClass base(Animal) model({ "path": "models/global/e_guppy.dkm" }) = fish_guppy1 : "Guppy 1" []
 @PointClass base(Animal) model({ "path": "models/global/e_guppy2.dkm" }) = fish_guppy2 : " Guppy 2" []
-@PointClass base(Animal) color(0.5 0.5 0) size(-40 -40 -40, 40 40 40) model({ "path": "models/global/dopefish.dkm" }) = fish_dopefish : "Dopefish" []
+@PointClass base(Animal) color(0.5 0.5 0) size(-40 -40 -40, 40 40 40) model({ "path": "models/global/dopefish.dkm", "scale" : "3 3 3" }) = fish_dopefish : "Dopefish" []
 
 
 //

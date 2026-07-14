@@ -31,7 +31,7 @@
 // Monsters (Episode 4)
 //
 @PointClass base(Appearflags, MonsterFlags) color(1 0.5 0) size(-16 -16 -24, 16 16 32) model({ "path": "models/e4/m_kage.dkm" }) = monster_kage : "Kage Mishima" []
-@PointClass base(AppearFlags, MonsterFlags) color(1 0.5 0) size(-16 -16 -8, 16 16 16) model({ "path": "models/e4/m_shark.dkm" }) = monster_shark : "Shark" []
+@PointClass base(Appearflags, MonsterFlags) color(1 0.5 0) size(-16 -16 -8, 16 16 16) model({ "path": "models/e4/m_shark.dkm" }) = monster_shark : "Shark" []
 @PointClass base(Appearflags, MonsterFlags) color(1 0.5 0) size(-16 -16 -24, 16 16 32) model({ "path": "models/e4/m_rocketmp.dkm" }) = monster_rocketmp : "Rocket MP" []
 @PointClass base(Appearflags, MonsterFlags) color(1 0.5 0) size(-16 -16 -24, 16 16 32) model({ "path": "models/e4/m_sgirl.dkm" }) = monster_sealgirl : "SEAL Girl" []
 @PointClass base(Appearflags, MonsterFlags) color(1 0.5 0) size(-16 -16 -24, 16 16 32) model({ "path": "models/e4/m_sealcap.dkm" }) = monster_sealcaptain : "SEAL Captain" []
@@ -43,7 +43,7 @@
 @PointClass base(Appearflags, MonsterFlags) color(1 0.5 0) size(-16 -16 -24, 16 16 32) model({ "path": "models/e4/m_femgang.dkm" }) = monster_femgang : "Female Gang Member" []
 @PointClass base(Appearflags, MonsterFlags) color(1 0.5 0) size(-16 -16 -24, 16 16 40) model({ "path": "models/e4/m_wpris.dkm" }) = monster_whiteprisoner : "White prisoner" []
 @PointClass base(Appearflags, MonsterFlags) color(1 0.5 0) size(-16 -16 -24, 16 16 40) model({ "path": "models/e4/m_bpris.dkm" }) = monster_blackprisoner : "Black prisoner" []
-@PointClass base(Appearflags, MonsterFlags) color(1 0.5 0) size(-8 -8 -16, 8 8 8) model({ "path": "models/e4/m_piperat.dkm" }) = monster_piperat : "Pipe rat - I broke you!" []
+@PointClass base(Appearflags, MonsterFlags) color(1 0.5 0) size(-8 -8 -16, 8 8 8) model({ "path": "models/e4/m_piperat.dkm", "scale" : "0.8 0.8 0.8" }) = monster_piperat : "Pipe rat - I broke you!" []
 
 
 //
@@ -52,7 +52,7 @@
 @PointClass base(Appearflags, DecorationFlags) color(1 0 0) size(-8 -8 -32, 8 8 32) = deco_e4 : "Episode 4 decoration"
 [
 	damage(integer): "damage applied when exploding. Default is 15." : 15
-	scale(float): "Scale of deco. Default 1.0." : 1.0
+	scale(float): "Scale of deco. Default 1.0." : "1.0"
 	model(string): "choose model # -- see list."
 	mass(float): "*optional* - including this overrides the mass value in decoinfo.txt" 
 	frame(integer): "allows you to specify the starting frame for the model."
