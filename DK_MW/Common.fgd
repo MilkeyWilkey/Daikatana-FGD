@@ -129,7 +129,7 @@
 
 @BaseClass base(Appearflags, Target, Sidekickflags) color(0 0.5 0.8) size(-16 -16 0, 16 16 32) = Ammo
 [
-	team(string) : "Team"
+
 ]
 
 @BaseClass color(0.5 0.5 0) size(-8 -8 -8, 8 8 8) = Animal
@@ -143,7 +143,7 @@
 
 @BaseClass base(Appearflags, Target, Sidekickflags) color(0 0.5 0.8) size(-20 -20 0, 20 20 32) = Weapons
 [
-	team(string) : "Team"
+
 ]
 
 @BaseClass base(Appearflags, Target, Targetname) = MonsterFlags
@@ -1473,12 +1473,12 @@
 //
 @BaseClass base(Appearflags, Target, Sidekickflags) color(0 0.5 0.8) size(-16 -16 -24, 16 16 8) = HealthItems
 [
-	team(string) : "Team"
+
 ]
 
 @BaseClass base(Appearflags, Target) = ShieldItems
 [
-	team(string) : "Team"
+
 ]
 
 @PointClass base(HealthItems) model({ "path": "models/global/a_gsoul.dkm" }) = item_goldensoul : "Maxes health to twice vitality." []
