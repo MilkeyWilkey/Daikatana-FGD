@@ -1318,7 +1318,7 @@
 //
 // Decorations
 //
-@PointClass base(Appearflags, Target, Targetname) color(1 0 0) size(-8 -8 -32, 8 8 32) = deco_custom : "Custom decoration"
+@PointClass base(Appearflags, Target, Targetname) color(1 0 0) size(-8 -8 -32, 8 8 32) model({"path" : model, scale : scale})= deco_custom : "Custom decoration"
 [
 	spawnflags(Flags) =
 	[
