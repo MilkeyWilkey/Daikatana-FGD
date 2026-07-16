@@ -407,7 +407,12 @@
 //
 @BaseClass base(Appearflags, Target, Targetname) color(1 0 0) size(-16 -16 -24, 16 16 32) = HealthStations []
 
-@PointClass base(HealthStations) = misc_hosportal : "Hosportal"
+@PointClass base(HealthStations) 
+model({{
+style == "1" -> {"path" : "models/e1/hosportal2.dkm", "frame" : 1},
+style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
+{"path" : "models/e1/hosportal1.dkm", "frame" : 1}
+}}) = misc_hosportal : "Hosportal"
 [
 	spawnflags(flags) =
 	[
@@ -425,11 +430,14 @@
 	max_juice(integer): "max amount of health to restore before depleted (100)"
 ]
 
-@PointClass base(HealthStations) = misc_fountain : "Greek health fountain." []
+@PointClass base(HealthStations) size(-16 -16 -24, 16 16 8) model({"path" : "models/e2/d2_hlthfnt.dkm"}) = misc_fountain : "Greek health fountain." []
 
-@PointClass base(HealthStations) = misc_drugbox : "Crate of drugs. Restores health." []
+@PointClass base(HealthStations) size(-8 -8 -24, 8 8 8) model({"path" : "models/e4/a4_dbox.dkm"}) = misc_drugbox : "Crate of drugs. Restores health." 
+[
+	angle(float) : "angle" : "0"
+]
 
-@PointClass base(HealthStations) = misc_healthtree : "Healing fruit tree."
+@PointClass base(HealthStations) size(-8 -8 -24, 8 8 8) model({"path" : "models/e1/healthtree.dkm"}) = misc_healthtree : "Healing fruit tree."
 [
 	max_fruit(choices): "max # of fruits on tree (5)" : 5 =
 	[
