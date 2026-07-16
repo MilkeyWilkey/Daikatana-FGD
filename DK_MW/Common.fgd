@@ -660,7 +660,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	count(integer): "number of positions this button has"
 ]
 
-@PointClass base(Appearflags) color(0.5 0.3 0) size(-8 -8 -8, 8 8 8) = path_corner_train : "Tran path corner"
+@PointClass base(Appearflags, Target, Targetname) color(0.5 0.3 0) size(-8 -8 -8, 8 8 8) = path_corner_train : "Tran path corner"
 [
 	spawnflags(Flags) =
 	[
