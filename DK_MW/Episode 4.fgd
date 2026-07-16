@@ -144,13 +144,18 @@
 	]
 	mass(float): "*optional* - including this overrides the mass value in decoinfo.txt" 
 	frame(integer): "allows you to specify the starting frame for the model."
-	animseq(integer): "allows you to specify an animation sequence for the model"
-	x_speed(integer): "speed to rotate along x axis in degrees per second"
-	y_speed(integer): "speed to rotate along y axis in degrees per second"
-	z_speed(integer): "speed to rotate along z axis in degrees per second"
+	animseq(integer): "0-4. number of animation sequences this deco has.  For decos with only one frame this should be zero"
+	x_speed(integer): "speed to rotate along x axis in degrees per second. ROTATE spawnflag must be set"
+	y_speed(integer): "speed to rotate along y axis in degrees per second. ROTATE spawnflag must be set"
+	z_speed(integer): "speed to rotate along z axis in degrees per second. ROTATE spawnflag must be set"
 	alpha(float): "range 0.0-1.0. Only used if TRANSLUCENT is flagged"
 	spawnname(string): "classname of entity to throw out upon death"
     movetype(string): "none, toss, bounce, float, overrides value in e1decoinfo.csv" : "none"
+	seq0(string) : "frames or frame sequences of animation  use '-' for a set of frames use '~' to loop the frames. example: 0~7 to loop frames 0 through 7" : "0"
+	seq1(string) : "frames or frame sequences of animation  use '-' for a set of frames use '~' to loop the frames. example: 0~7 to loop frames 0 through 7" : "0"
+	seq2(string) : "frames or frame sequences of animation  use '-' for a set of frames use '~' to loop the frames. example: 0~7 to loop frames 0 through 7" : "0"
+	seq3(string) : "frames or frame sequences of animation  use '-' for a set of frames use '~' to loop the frames. example: 0~7 to loop frames 0 through 7" : "0"
+	seq4(string) : "frames or frame sequences of animation  use '-' for a set of frames use '~' to loop the frames. example: 0~7 to loop frames 0 through 7" : "0"
 ]
 
 //
