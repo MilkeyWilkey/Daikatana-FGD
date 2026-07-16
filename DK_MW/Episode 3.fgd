@@ -69,20 +69,148 @@
 //
 // Decorations (Episode 3)
 //
-@PointClass base(Appearflags, DecorationFlags) color(1 0 0) size(-8 -8 -32, 8 8 32) = deco_e3 : "Episode 3 decoration"
+@PointClass base(Appearflags, DecorationFlags) color(1 0 0) size(-8 -8 -32, 8 8 32) 
+	model({{ 
+			model == "alter" -> {"path" : "models/e3/d3_alter.dkm"},
+			model == "axe" -> {"path" : "models/e3/d3_axe.dkm"},
+			model == "barfloat" -> {"path" : "models/e3/d3_barfloat.dkm"},
+			model == "barrel" -> {"path" : "models/e3/d3_barrel.dkm"},
+			model == "bed1" -> {"path" : "models/e3/d3_bed1.dkm"},
+			model == "bone" -> {"path" : "models/e3/d3_bone.dkm"},
+			model == "brazier" -> {"path" : "models/e3/d3_brazier.dkm"},
+			model == "bubcorp1" -> {"path" : "models/e3/d3_bubcorpse.dkm"},
+			model == "bubcorp2" -> {"path" : "models/e3/d3_bubc2.dkm"},
+			model == "bubcorp3" -> {"path" : "models/e3/d3_bubc3.dkm"},
+			model == "bubskull" -> {"path" : "models/e3/d3_bubskull.dkm"},
+			model == "bubspine" -> {"path" : "models/e3/d3_bubspine.dkm"},
+			model == "candle" -> {"path" : "models/e3/d3_candle.dkm"},
+			model == "cart" -> {"path" : "models/e3/d3_cart.dkm"},
+			model == "chair2" -> {"path" : "models/e3/d3_chair2.dkm"},
+			model == "corpse" -> {"path" : "models/e3/d3_corps.dkm"},
+			model == "croc" -> {"path" : "models/e3/m_croco.dkm"},
+			model == "cross" -> {"path" : "models/e3/e3_cross.dkm"},
+			model == "crow" -> {"path" : "models/e3/d3_crow.dkm"},
+			model == "crowscage" -> {"path" : "models/e3/d3_crowscage.dkm"},
+			model == "deadtree" -> {"path" : "models/e3/d3_deadtree.dkm"},
+			model == "deco1" -> {"path" : "models/e3/d3_dkdeco1.dkm"},
+			model == "dragonstatue" -> {"path" : "models/e3/d3_dragonstatue.dkm"},
+			model == "e3ctflag_blue" -> {"path" : "models/e3/e3ctflag_blue.dkm"},
+			model == "e3ctflag_red" -> {"path" : "models/e3/e3ctflag_red.dkm"},
+			model == "fireshelf" -> {"path" : "models/e3/d3_fireshelf.dkm"},
+			model == "flag1" -> {"path" : "models/e3/d3_flag1.dkm"},
+			model == "flag2" -> {"path" : "models/e3/d3_flag2.dkm"},
+			model == "flag3" -> {"path" : "models/e3/d3_flag3.dkm"},
+			model == "flamhold" -> {"path" : "models/e3/d3_flamehold.dkm"},
+			model == "flask1" -> {"path" : "models/e3/d3_flask1.dkm"},
+			model == "flask2" -> {"path" : "models/e3/d3_flask2.dkm"},
+			model == "flask3" -> {"path" : "models/e3/d3_flask3.dkm"},
+			model == "flask4" -> {"path" : "models/e3/d3_flask4.dkm"},
+			model == "gar2" -> {"path" : "models/e3/d3_dkgar2.dkm"},
+			model == "grain" -> {"path" : "models/e3/d3_grain.dkm"},
+			model == "ice" -> {"path" : "models/e3/d3_ice.dkm"},
+			model == "iceshard" -> {"path" : "models/e3/d3_iceshard.dkm"},
+			model == "kegs" -> {"path" : "models/e3/d3_kegs.dkm"},
+			model == "mug" -> {"path" : "models/e3/d3_mug.dkm"},
+			model == "organ" -> {"path" : "models/e3/d3_organ.dkm"},
+			model == "rat" -> {"path" : "models/e3/d3_rat.dkm"},
+			model == "ribcage" -> {"path" : "models/e3/d3_ribcage.dkm"},
+			model == "rod" -> {"path" : "models/e3/d3_rod.dkm"},
+			model == "shield" -> {"path" : "models/e3/d3_shield.dkm"},
+			model == "skull" -> {"path" : "models/e3/d3_skull.dkm"},
+			model == "skullgate" -> {"path" : "models/e3/d3_skullgate.dkm"},
+			model == "stool" -> {"path" : "models/e3/d3_stool.dkm"},
+			model == "sword" -> {"path" : "models/e3/d3_sword.dkm"},
+			model == "table" -> {"path" : "models/e3/d3_table.dkm"},
+			model == "toga" -> {"path" : "models/e3/m_toga_dude.dkm"},
+			model == "togag" -> {"path" : "models/e3/m_toga_girl.dkm"},
+			model == "torch" -> {"path" : "models/e3/d3_torch.dkm"},
+			model == "truck" -> {"path" : "models/e3/e1_truck.dkm"},
+			model == "wingsk" -> {"path" : "models/e3/d3_wingsk.dkm"},
+			model == "winlight1" -> {"path" : "models/e3/d3_winlight1.dkm"},
+			model == "wynbook" -> {"path" : "models/e3/d3_wynbook.dkm"},
+			model == "wynorb" -> {"path" : "models/e3/d3_wynor.dkm"},
+			model == "wynstand" -> {"path" : "models/e3/d3_wynstand.dkm"}
+		 }}) = deco_e3 : "Episode 3 decoration"
 [
 	damage(integer): "damage applied when exploding. Default is 15." : 15
 	scale(float): "Scale of deco. Default 1.0." : "1.0"
-	model(string): "choose model # -- see list."
+	model(choices): "choose model" : 0 =
+	[
+		"alter" : "alter"
+		"axe" : "axe"
+		"barfloat" : "barfloat"
+		"barrel" : "barrel"
+		"bed1" : "bed1"
+		"bone" : "bone"
+		"brazier" : "brazier"
+		"bubcorp1" : "bubcorp1"
+		"bubcorp2" : "bubcorp2"
+		"bubcorp3" : "bubcorp3"
+		"bubskull" : "bubskull"
+		"bubspine" : "bubspine"
+		"candle" : "candle"
+		"cart" : "cart"
+		"chair2" : "chair2"
+		"corpse" : "corpse"
+		"croc" : "croc"
+		"cross" : "cross"
+		"crow" : "crow"
+		"crowscage" : "crowscage"
+		"deadtree" : "deadtree"
+		"deco1" : "deco1"
+		"dragonstatue" : "dragonstatue"
+		"e3ctflag_blue" : "e3ctflag_blue"
+		"e3ctflag_red" : "e3ctflag_red"
+		"fireshelf" : "fireshelf"
+		"flag1" : "flag1"
+		"flag2" : "flag2"
+		"flag3" : "flag3"
+		"flamhold" : "flamhold"
+		"flask1" : "flask1"
+		"flask2" : "flask2"
+		"flask3" : "flask3"
+		"flask4" : "flask4"
+		"gar2" : "gar2"
+		"grain" : "grain"
+		"ice" : "ice"
+		"iceshard" : "iceshard"
+		"kegs" : "kegs"
+		"mug" : "mug"
+		"organ" : "organ"
+		"rat" : "rat"
+		"ribcage" : "ribcage"
+		"rod" : "rod"
+		"shield" : "shield"
+		"skull" : "skull"
+		"skullgate" : "skullgate"
+		"stool" : "stool"
+		"sword" : "sword"
+		"table" : "table"
+		"toga" : "toga"
+		"togag" : "togag"
+		"torch" : "torch"
+		"truck" : "truck"
+		"wingsk" : "wingsk"
+		"winlight1" : "winlight1"
+		"wynbook" : "wynbook"
+		"wynorb" : "wynorb"
+		"wynstand" : "wynstand"
+	]
+	
 	mass(float): "*optional* - including this overrides the mass value in decoinfo.txt" 
 	frame(integer): "allows you to specify the starting frame for the model."
-	animseq(integer): "allows you to specify an animation sequence for the model"
-	x_speed(integer): "speed to rotate along x axis in degrees per second"
-	y_speed(integer): "speed to rotate along y axis in degrees per second"
-	z_speed(integer): "speed to rotate along z axis in degrees per second"
+	animseq(integer): "0-4. number of animation sequences this deco has.  For decos with only one frame this should be zero"
+	x_speed(integer): "speed to rotate along x axis in degrees per second. ROTATE spawnflag must be set"
+	y_speed(integer): "speed to rotate along y axis in degrees per second. ROTATE spawnflag must be set"
+	z_speed(integer): "speed to rotate along z axis in degrees per second. ROTATE spawnflag must be set"
 	alpha(float): "range 0.0-1.0. Only used if TRANSLUCENT is flagged"
 	spawnname(string): "classname of entity to throw out upon death"
     movetype(string): "none, toss, bounce, float, overrides value in e1decoinfo.csv" : "none"
+	seq0(string) : "frames or frame sequences of animation  use '-' for a set of frames use '~' to loop the frames. example: 0~7 to loop frames 0 through 7" : "0"
+	seq1(string) : "frames or frame sequences of animation  use '-' for a set of frames use '~' to loop the frames. example: 0~7 to loop frames 0 through 7" : "0"
+	seq2(string) : "frames or frame sequences of animation  use '-' for a set of frames use '~' to loop the frames. example: 0~7 to loop frames 0 through 7" : "0"
+	seq3(string) : "frames or frame sequences of animation  use '-' for a set of frames use '~' to loop the frames. example: 0~7 to loop frames 0 through 7" : "0"
+	seq4(string) : "frames or frame sequences of animation  use '-' for a set of frames use '~' to loop the frames. example: 0~7 to loop frames 0 through 7" : "0"
 ]
 
 

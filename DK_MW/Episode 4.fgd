@@ -49,7 +49,7 @@
 //
 // Decorations (Episode 4)
 //
-@PointClass base(Appearflags, DecorationFlags) color(1 0 0) 
+@PointClass base(Appearflags, DecorationFlags) color(1 0 0) size(-8 -8 -32, 8 8 32)
 	model({{ 
             model == "1stwheel" -> {"path" : "models/e4/d4_wheel.dkm"},
             model == "banner1" -> {"path" : "models/e4/d4_banner.dkm"}, 
@@ -92,7 +92,7 @@
             model == "wires1" -> {"path" : "models/e4/d4_wires1.dkm"},
             model == "daikatana" -> {"path": "models/e4/d4_daikatana.dkm"}
 		 }})
-	size(-8 -8 -32, 8 8 32) = deco_e4 : "Episode 4 decoration"
+	 = deco_e4 : "Episode 4 decoration"
 [
 	damage(integer): "damage applied when exploding. Default is 15." : 15
 	scale(float): "Scale of deco. Default 1.0." : "1.0"
