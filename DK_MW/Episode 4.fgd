@@ -49,7 +49,50 @@
 //
 // Decorations (Episode 4)
 //
-@PointClass base(Appearflags, DecorationFlags) color(1 0 0) size(-8 -8 -32, 8 8 32) = deco_e4 : "Episode 4 decoration"
+@PointClass base(Appearflags, DecorationFlags) color(1 0 0) 
+	model({{ 
+			model == "daikatana" -> {"path": "models/e4/d4_daikatana.dkm"},
+            model == "1stwheel" -> {"path" : "models/e4/d4_wheel.dkm"},
+            model == "d4_afish" -> {"path" : "models/e4/d4_afish.dkm"}, 
+            model == "d4_rat" -> {"path" : "models/e4/d4_rat.dkm"},
+            model == "barrel1" -> {"path" : "models/e4/d4_brl1.dkm"},
+            model == "barrel2" -> {"path" : "models/e4/d4_brl2.dkm"},
+            model == "barrel3" -> {"path" : "models/e4/d4_brl3.dkm"},
+            model == "bonsai1" -> {"path" : "models/e4/d4_bon.dkm"},
+            model == "bonsai2" -> {"path" : "models/e4/d4_bon2.dkm"},
+            model == "bonsai3" -> {"path" : "models/e4/d4_bon3.dkm"},
+            model == "d4_bot1" -> {"path" : "models/e4/d4_bot1.dkm"},
+            model == "d4_bot2" -> {"path" : "models/e4/d4_bot2.dkm"},
+            model == "bottle" -> {"path" : "models/e4/d4_bottle.dkm"},
+            model == "d4_bread" -> {"path" : "models/e4/d4_bread.dkm"}, 
+            model == "bush1" -> {"path" : "models/e4/d4_bush1.dkm"},
+            model == "d4_cof" -> {"path" : "models/e4/d4_cof.dkm"},
+            model == "demon" -> {"path" : "models/e4/d4_demon.dkm"},
+            model == "goldencup" -> {"path" : "models/e4/d4_gcup.dkm"}, 
+            model == "ironbox" -> {"path" : "models/e4/d4_iron.dkm"},
+            model == "japplant1" -> {"path" : "models/e4/d4_jppl1.dkm"},
+            model == "japplant2" -> {"path" : "models/e4/d4_jppl2.dkm"},
+            model == "jappot1" -> {"path" : "models/e4/d4_jppt1.dkm"},
+            model == "jappot2" -> {"path" : "models/e4/d4_jppt2.dkm"},
+            model == "kendorack" -> {"path" : "models/e4/d4_kendo.dkm"},
+            model == "lantern" -> {"path" : "models/e4/d4_lant.dkm"},
+            model == "pipeend" -> {"path" : "models/e4/d4_pipe1.dkm"},
+            model == "pipend2" -> {"path" : "models/e4/d4_pipe2.dkm"},
+            model == "d4_cup" -> {"path" : "models/e4/d4_cup.dkm"},
+            model == "pot1" -> {"path" : "models/e4/d4_pan1.dkm"},
+            model == "pracswo" -> {"path" : "models/e4/d4_sword.dkm"}, 
+            model == "rock1" -> {"path" : "models/e4/d4_rock1.dkm"},
+            model == "samarmor" -> {"path" : "models/e4/d4_armor.dkm"}, 
+            model == "d4_gull" -> {"path" : "models/e4/d4_gull.dkm"},
+            model == "sodacan" -> {"path" : "models/e4/d4_soda.dkm"},
+            model == "tray" -> {"path" : "models/e4/d4_tray.dkm"},
+            model == "banner1" -> {"path" : "models/e4/d4_banner.dkm"}, 
+            model == "wires1" -> {"path" : "models/e4/d4_wires1.dkm"},
+            model == "trashcan" -> {"path" : "models/e4/d4_trashcan.dkm"},
+            model == "logs" -> {"path" : "models/e4/d4_log.dkm"},
+            model == "Tosh" -> {"path" : "models/e4/Toshiro_ebihara_low.dkm"}
+		 }})
+	size(-8 -8 -32, 8 8 32) = deco_e4 : "Episode 4 decoration"
 [
 	damage(integer): "damage applied when exploding. Default is 15." : 15
 	scale(float): "Scale of deco. Default 1.0." : "1.0"
