@@ -77,20 +77,201 @@
 //
 // Decorations (Episode 1)
 //
-@PointClass base(Appearflags, DecorationFlags) color(1 0 0) size(-8 -8 -32, 8 8 32) = deco_e1 : "Episode 1 decoration"
+@PointClass base(Appearflags, DecorationFlags) color(1 0 0) size(-8 -8 -32, 8 8 32) 
+	model({{ 
+			model == "anvil" -> {"path" : "models/e1/cin_anvil.dkm"},
+			model == "barrel3" -> {"path" : "models/e1/d1_barrel3.dkm"},
+			model == "barrel4" -> {"path" : "models/e1/d1_barrel4.dkm"},
+			model == "bigpill" -> {"path" : "models/e1/cin_bigpill.dkm"},
+			model == "bodybin" -> {"path" : "models/e1/d1_bbin.dkm"},
+			model == "bodyparts" -> {"path" : "models/e1/d1_bparts.dkm"},
+			model == "books1" -> {"path" : "models/e1/cin_books1.dkm"},
+			model == "books2" -> {"path" : "models/e1/cin_books2.dkm"},
+			model == "brain" -> {"path" : "models/e1/d1_brain.dkm"},
+			model == "candybar" -> {"path" : "models/e1/candy_bar.dkm"},
+			model == "car1" -> {"path" : "models/e1/cin_car1.dkm"},
+			model == "chain1" -> {"path" : "models/e1/d1_chain1.dkm"},
+			model == "chain2" -> {"path" : "models/e1/d1_chain2.dkm"},
+			model == "coffin" -> {"path" : "models/e1/d1_coffin.dkm"},
+			model == "coffin2" -> {"path" : "models/e1/d1_coffin2.dkm"},
+			model == "compchair" -> {"path" : "models/e1/d1_cchair1.dkm"},
+			model == "compdesk" -> {"path" : "models/e1/d1_cdesk1.dkm"},
+			model == "comptubes" -> {"path" : "models/e1/d1_ctubes.dkm"},
+			model == "cup" -> {"path" : "models/global/cup.dkm"},
+			model == "d1_fly" -> {"path" : "models/e1/d1_fly.dkm"},
+			model == "deadguy" -> {"path" : "models/e1/m_dead.dkm"},
+			model == "deadninja" -> {"path" : "models/e1/cin_ninja.dkm"},
+			model == "deadtoshiro" -> {"path" : "models/e1/cin_toshiro.dkm"},
+			model == "deathtruck" -> {"path" : "models/e1/d1_deathtruck.dkm"},
+			model == "dklogo" -> {"path" : "models/e1/d_dklogo.dkm"},
+			model == "dojburn " -> {"path" : "models/e1/cin_dojburn.dkm"},
+			model == "dojflag" -> {"path" : "models/e1/cin_dojflag.dkm"},
+			model == "dojspa  " -> {"path" : "models/e1/cin_dojspa.dkm"},
+			model == "dojurne  " -> {"path" : "models/e1/cin_dojurne.dkm"},
+			model == "doorcomp" -> {"path" : "models/e1/e1_drcmp.dkm"},
+			model == "dressr1" -> {"path" : "models/e1/d1_dressr1.dkm"},
+			model == "dressr2" -> {"path" : "models/e1/d1_dressr2.dkm"},
+			model == "gargdog " -> {"path" : "models/e1/cin_gargdog.dkm"},
+			model == "gibpile" -> {"path" : "models/e1/d1_gibpile.dkm"},
+			model == "hand2" -> {"path" : "models/e1/d1_hand2.dkm"},
+			model == "head" -> {"path" : "models/e1/d1_head.dkm"},
+			model == "hook1" -> {"path" : "models/e1/d1_hook1.dkm"},
+			model == "htr1" -> {"path" : "models/e1/d1_htr1.dkm"},
+			model == "htr2" -> {"path" : "models/e1/d1_htr2.dkm"},
+			model == "htr3" -> {"path" : "models/e1/d1_htr3.dkm"},
+			model == "htr4" -> {"path" : "models/e1/d1_htr4.dkm"},
+			model == "katwall  " -> {"path" : "models/e1/cin_katwall.dkm"},
+			model == "lamp1" -> {"path" : "models/e1/d1_lamp1.dkm"},
+			model == "lamp2" -> {"path" : "models/e1/d1_lamp2.dkm"},
+			model == "lamp3" -> {"path" : "models/e1/d1_lamp3.dkm"},
+			model == "light" -> {"path" : "models/global/light.dkm"},
+			model == "mihopod " -> {"path" : "models/e1/cin_mihopod.dkm"},
+			model == "mikikostasis" -> {"path" : "models/e1/d1_mkstasis.dkm"},
+			model == "pb" -> {"path" : "models/e1/pb.dkm"},
+			model == "pb2" -> {"path" : "models/e1/pb2.dkm"},
+			model == "plock" -> {"path" : "models/e1/d1_plock.dkm"},
+			model == "ragearm" -> {"path" : "models/e1/d1_ragearm.dkm"},
+			model == "ragerack" -> {"path" : "models/e1/d1_ragerack.dkm"},
+			model == "sign1" -> {"path" : "models/e1/d1_sign1.dkm"},
+			model == "sign2" -> {"path" : "models/e1/d1_sign2.dkm"},
+			model == "sign3" -> {"path" : "models/e1/d1_sign3.dkm"},
+			model == "sign4" -> {"path" : "models/e1/d1_sign4.dkm"},
+			model == "sludgeleg" -> {"path" : "models/e1/d1_sludgeleg.dkm"},
+			model == "smapill" -> {"path" : "models/e1/cin_smapill.dkm"},
+			model == "spewall  " -> {"path" : "models/e1/cin_spewall.dkm"},
+			model == "supertorture" -> {"path" : "models/e1/d1_supertorture.dkm"},
+			model == "swgrs" -> {"path" : "models/e1/d1_wtrgrss.dkm"},
+			model == "swp12" -> {"path" : "models/e1/d1_swp12.dkm"},
+			model == "swp3" -> {"path" : "models/e1/d1_swp3.dkm"},
+			model == "swp4" -> {"path" : "models/e1/d1_swp4.dkm"},
+			model == "swp5" -> {"path" : "models/e1/d1_swp5.dkm"},
+			model == "swp6" -> {"path" : "models/e1/d1_swp6.dkm"},
+			model == "swp7" -> {"path" : "models/e1/d1_swp7.dkm"},
+			model == "swp8" -> {"path" : "models/e1/d1_swp8.dkm"},
+			model == "swp9" -> {"path" : "models/e1/d1_swp9.dkm"},
+			model == "swt1" -> {"path" : "models/e1/d1_swt1.dkm"},
+			model == "swt2" -> {"path" : "models/e1/d1_swt2.dkm"},
+			model == "swt3" -> {"path" : "models/e1/d1_swt3.dkm"},
+			model == "table2" -> {"path" : "models/e1/d1_table2.dkm"},
+			model == "taxi    " -> {"path" : "models/e1/cin_taxi.dkm"},
+			model == "torso" -> {"path" : "models/e1/d1_torso.dkm"},
+			model == "torture1" -> {"path" : "models/e1/m_torture1.dkm"},
+			model == "torture2" -> {"path" : "models/e1/m_torture2.dkm"},
+			model == "torturebase" -> {"path" : "models/e1/torturebase.dkm"},
+			model == "torturetable" -> {"path" : "models/e1/d1_torturetable.dkm"},
+			model == "tplt" -> {"path" : "models/e1/d1_tplt.dkm"},
+			model == "trashcan" -> {"path" : "models/e1/cin_trashcan.dkm"},
+			model == "truckseat" -> {"path" : "models/e1/d1_truckseat.dkm"},
+			model == "truckwheel" -> {"path" : "models/e1/d1_truckwheel.dkm"},
+			model == "vending" -> {"path" : "models/e1/vending_mach.dkm"},
+			model == "Wilson" -> {"path" : "models/e1/d1_torturewilson.dkm"}
+	}}) = deco_e1 : "Episode 1 decoration"
 [
 	damage(integer): "damage applied when exploding. Default is 15." : 15
 	scale(float): "Scale of deco. Default 1.0." : "1.0"
-	model(string): "choose model # -- see list."
+	model(choices): "choose model" : 0 =
+	[
+		"anvil" : "anvil"
+		"barrel3" : "barrel3"
+		"barrel4" : "barrel4"
+		"bigpill" : "bigpill"
+		"bodybin" : "bodybin"
+		"bodyparts" : "bodyparts"
+		"books1" : "books1"
+		"books2" : "books2"
+		"brain" : "brain"
+		"candybar" : "candybar"
+		"car1" : "car1"
+		"chain1" : "chain1"
+		"chain2" : "chain2"
+		"coffin" : "coffin"
+		"coffin2" : "coffin2"
+		"compchair" : "compchair"
+		"compdesk" : "compdesk"
+		"comptubes" : "comptubes"
+		"cup" : "cup"
+		"d1_fly" : "d1_fly"
+		"deadguy" : "deadguy"
+		"deadninja" : "deadninja"
+		"deadtoshiro" : "deadtoshiro"
+		"deathtruck" : "deathtruck"
+		"dklogo" : "dklogo"
+		"dojburn" : "dojburn"
+		"dojflag" : "dojflag"
+		"dojspa " : "dojspa "
+		"dojurne " : "dojurne "
+		"doorcomp" : "doorcomp"
+		"dressr1" : "dressr1"
+		"dressr2" : "dressr2"
+		"gargdog" : "gargdog"
+		"gibpile" : "gibpile"
+		"hand2" : "hand2"
+		"head" : "head"
+		"hook1" : "hook1"
+		"htr1" : "htr1"
+		"htr2" : "htr2"
+		"htr3" : "htr3"
+		"htr4" : "htr4"
+		"katwall " : "katwall "
+		"lamp1" : "lamp1"
+		"lamp2" : "lamp2"
+		"lamp3" : "lamp3"
+		"light" : "light"
+		"mihopod" : "mihopod"
+		"mikikostasis" : "mikikostasis"
+		"pb" : "pb"
+		"pb2" : "pb2"
+		"plock" : "plock"
+		"ragearm" : "ragearm"
+		"ragerack" : "ragerack"
+		"sign1" : "sign1"
+		"sign2" : "sign2"
+		"sign3" : "sign3"
+		"sign4" : "sign4"
+		"sludgeleg" : "sludgeleg"
+		"smapill" : "smapill"
+		"spewall " : "spewall "
+		"supertorture" : "supertorture"
+		"swgrs" : "swgrs"
+		"swp12" : "swp12"
+		"swp3" : "swp3"
+		"swp4" : "swp4"
+		"swp5" : "swp5"
+		"swp6" : "swp6"
+		"swp7" : "swp7"
+		"swp8" : "swp8"
+		"swp9" : "swp9"
+		"swt1" : "swt1"
+		"swt2" : "swt2"
+		"swt3" : "swt3"
+		"table2" : "table2"
+		"taxi   " : "taxi   "
+		"torso" : "torso"
+		"torture1" : "torture1"
+		"torture2" : "torture2"
+		"torturebase" : "torturebase"
+		"torturetable" : "torturetable"
+		"tplt" : "tplt"
+		"trashcan" : "trashcan"
+		"truckseat" : "truckseat"
+		"truckwheel" : "truckwheel"
+		"vending" : "vending"
+		"Wilson" : "Wilson"
+	]
 	mass(float): "*optional* - including this overrides the mass value in decoinfo.txt" 
 	frame(integer): "allows you to specify the starting frame for the model."
-	animseq(integer): "allows you to specify an animation sequence for the model"
-	x_speed(integer): "speed to rotate along x axis in degrees per second"
-	y_speed(integer): "speed to rotate along y axis in degrees per second"
-	z_speed(integer): "speed to rotate along z axis in degrees per second"
+	animseq(integer): "0-4. number of animation sequences this deco has.  For decos with only one frame this should be zero"
+	x_speed(integer): "speed to rotate along x axis in degrees per second. ROTATE spawnflag must be set"
+	y_speed(integer): "speed to rotate along y axis in degrees per second. ROTATE spawnflag must be set"
+	z_speed(integer): "speed to rotate along z axis in degrees per second. ROTATE spawnflag must be set"
 	alpha(float): "range 0.0-1.0. Only used if TRANSLUCENT is flagged"
 	spawnname(string): "classname of entity to throw out upon death"
     movetype(string): "none, toss, bounce, float, overrides value in e1decoinfo.csv" : "none"
+	seq0(string) : "frames or frame sequences of animation  use '-' for a set of frames use '~' to loop the frames. example: 0~7 to loop frames 0 through 7" : "0"
+	seq1(string) : "frames or frame sequences of animation  use '-' for a set of frames use '~' to loop the frames. example: 0~7 to loop frames 0 through 7" : "0"
+	seq2(string) : "frames or frame sequences of animation  use '-' for a set of frames use '~' to loop the frames. example: 0~7 to loop frames 0 through 7" : "0"
+	seq3(string) : "frames or frame sequences of animation  use '-' for a set of frames use '~' to loop the frames. example: 0~7 to loop frames 0 through 7" : "0"
+	seq4(string) : "frames or frame sequences of animation  use '-' for a set of frames use '~' to loop the frames. example: 0~7 to loop frames 0 through 7" : "0"
 ]
 
 
