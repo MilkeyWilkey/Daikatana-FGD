@@ -79,7 +79,7 @@
 	]
 ]
 
-@BaseClass = DecorationFlags
+@BaseClass = Deco
 [
 	spawnflags(Flags) =
 	[
@@ -93,6 +93,22 @@
 		128: "ROTATE" : 0
 		256: "DECO_TRANSLUCENT" : 0
 	]
+	damage(integer): "damage applied when exploding. Default is 15." : 15
+	scale(float): "Scale of deco. Default 1.0." : "1.0"
+	mass(float): "*optional* - including this overrides the mass value in decoinfo.txt" 
+	frame(integer): "allows you to specify the starting frame for the model."
+	animseq(integer): "0-4. number of animation sequences this deco has.  For decos with only one frame this should be zero"
+	x_speed(integer): "speed to rotate along x axis in degrees per second. ROTATE spawnflag must be set"
+	y_speed(integer): "speed to rotate along y axis in degrees per second. ROTATE spawnflag must be set"
+	z_speed(integer): "speed to rotate along z axis in degrees per second. ROTATE spawnflag must be set"
+	alpha(float): "range 0.0-1.0. Only used if TRANSLUCENT is flagged"
+	spawnname(string): "classname of entity to throw out upon death"
+    movetype(string): "none, toss, bounce, float, overrides value in e1decoinfo.csv" : "none"
+	seq0(string) : "frames or frame sequences of animation  use '-' for a set of frames use '~' to loop the frames. example: 0~7 to loop frames 0 through 7" : "0"
+	seq1(string) : "frames or frame sequences of animation  use '-' for a set of frames use '~' to loop the frames. example: 0~7 to loop frames 0 through 7" : "0"
+	seq2(string) : "frames or frame sequences of animation  use '-' for a set of frames use '~' to loop the frames. example: 0~7 to loop frames 0 through 7" : "0"
+	seq3(string) : "frames or frame sequences of animation  use '-' for a set of frames use '~' to loop the frames. example: 0~7 to loop frames 0 through 7" : "0"
+	seq4(string) : "frames or frame sequences of animation  use '-' for a set of frames use '~' to loop the frames. example: 0~7 to loop frames 0 through 7" : "0"
 ]
 
 @BaseClass = PurifierShard
@@ -1322,41 +1338,587 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	sound(string): "wave file to play when the particles are spawned"
 ]
 
+//
+// Decorations (Episode 1)
+//
+@PointClass base(Appearflags, Deco) color(1 0 0) size(-8 -8 -32, 8 8 32) 
+	model({{ 
+			model == "anvil" -> {"path" : "models/e1/cin_anvil.dkm"},
+			model == "barrel3" -> {"path" : "models/e1/d1_barrel3.dkm"},
+			model == "barrel4" -> {"path" : "models/e1/d1_barrel4.dkm"},
+			model == "bigpill" -> {"path" : "models/e1/cin_bigpill.dkm"},
+			model == "bodybin" -> {"path" : "models/e1/d1_bbin.dkm"},
+			model == "bodyparts" -> {"path" : "models/e1/d1_bparts.dkm"},
+			model == "books1" -> {"path" : "models/e1/cin_books1.dkm"},
+			model == "books2" -> {"path" : "models/e1/cin_books2.dkm"},
+			model == "brain" -> {"path" : "models/e1/d1_brain.dkm"},
+			model == "candybar" -> {"path" : "models/e1/candy_bar.dkm"},
+			model == "car1" -> {"path" : "models/e1/cin_car1.dkm"},
+			model == "chain1" -> {"path" : "models/e1/d1_chain1.dkm"},
+			model == "chain2" -> {"path" : "models/e1/d1_chain2.dkm"},
+			model == "coffin" -> {"path" : "models/e1/d1_coffin.dkm"},
+			model == "coffin2" -> {"path" : "models/e1/d1_coffin2.dkm"},
+			model == "compchair" -> {"path" : "models/e1/d1_cchair1.dkm"},
+			model == "compdesk" -> {"path" : "models/e1/d1_cdesk1.dkm"},
+			model == "comptubes" -> {"path" : "models/e1/d1_ctubes.dkm"},
+			model == "cup" -> {"path" : "models/global/cup.dkm"},
+			model == "d1_fly" -> {"path" : "models/e1/d1_fly.dkm"},
+			model == "deadguy" -> {"path" : "models/e1/m_dead.dkm"},
+			model == "deadninja" -> {"path" : "models/e1/cin_ninja.dkm"},
+			model == "deadtoshiro" -> {"path" : "models/e1/cin_toshiro.dkm"},
+			model == "deathtruck" -> {"path" : "models/e1/d1_deathtruck.dkm"},
+			model == "dklogo" -> {"path" : "models/e1/d_dklogo.dkm"},
+			model == "dojburn" -> {"path" : "models/e1/cin_dojburn.dkm"},
+			model == "dojflag" -> {"path" : "models/e1/cin_dojflag.dkm"},
+			model == "dojspa" -> {"path" : "models/e1/cin_dojspa.dkm"},
+			model == "dojurne" -> {"path" : "models/e1/cin_dojurne.dkm"},
+			model == "doorcomp" -> {"path" : "models/e1/e1_drcmp.dkm"},
+			model == "dressr1" -> {"path" : "models/e1/d1_dressr1.dkm"},
+			model == "dressr2" -> {"path" : "models/e1/d1_dressr2.dkm"},
+			model == "gargdog " -> {"path" : "models/e1/cin_gargdog.dkm"},
+			model == "gibpile" -> {"path" : "models/e1/d1_gibpile.dkm"},
+			model == "hand2" -> {"path" : "models/e1/d1_hand2.dkm"},
+			model == "head" -> {"path" : "models/e1/d1_head.dkm"},
+			model == "hook1" -> {"path" : "models/e1/d1_hook1.dkm"},
+			model == "htr1" -> {"path" : "models/e1/d1_htr1.dkm"},
+			model == "htr2" -> {"path" : "models/e1/d1_htr2.dkm"},
+			model == "htr3" -> {"path" : "models/e1/d1_htr3.dkm"},
+			model == "htr4" -> {"path" : "models/e1/d1_htr4.dkm"},
+			model == "katwall" -> {"path" : "models/e1/cin_katwall.dkm"},
+			model == "lamp1" -> {"path" : "models/e1/d1_lamp1.dkm"},
+			model == "lamp2" -> {"path" : "models/e1/d1_lamp2.dkm"},
+			model == "lamp3" -> {"path" : "models/e1/d1_lamp3.dkm"},
+			model == "light" -> {"path" : "models/global/light.dkm"},
+			model == "mihopod" -> {"path" : "models/e1/cin_mihopod.dkm"},
+			model == "mikikostasis" -> {"path" : "models/e1/d1_mkstasis.dkm"},
+			model == "pb" -> {"path" : "models/e1/pb.dkm"},
+			model == "pb2" -> {"path" : "models/e1/pb2.dkm"},
+			model == "plock" -> {"path" : "models/e1/d1_plock.dkm"},
+			model == "ragearm" -> {"path" : "models/e1/d1_ragearm.dkm"},
+			model == "ragerack" -> {"path" : "models/e1/d1_ragerack.dkm"},
+			model == "sign1" -> {"path" : "models/e1/d1_sign1.dkm"},
+			model == "sign2" -> {"path" : "models/e1/d1_sign2.dkm"},
+			model == "sign3" -> {"path" : "models/e1/d1_sign3.dkm"},
+			model == "sign4" -> {"path" : "models/e1/d1_sign4.dkm"},
+			model == "sludgeleg" -> {"path" : "models/e1/d1_sludgeleg.dkm"},
+			model == "smapill" -> {"path" : "models/e1/cin_smapill.dkm"},
+			model == "spewall" -> {"path" : "models/e1/cin_spewall.dkm"},
+			model == "supertorture" -> {"path" : "models/e1/d1_supertorture.dkm"},
+			model == "swgrs" -> {"path" : "models/e1/d1_wtrgrss.dkm"},
+			model == "swp12" -> {"path" : "models/e1/d1_swp12.dkm"},
+			model == "swp3" -> {"path" : "models/e1/d1_swp3.dkm"},
+			model == "swp4" -> {"path" : "models/e1/d1_swp4.dkm"},
+			model == "swp5" -> {"path" : "models/e1/d1_swp5.dkm"},
+			model == "swp6" -> {"path" : "models/e1/d1_swp6.dkm"},
+			model == "swp7" -> {"path" : "models/e1/d1_swp7.dkm"},
+			model == "swp8" -> {"path" : "models/e1/d1_swp8.dkm"},
+			model == "swp9" -> {"path" : "models/e1/d1_swp9.dkm"},
+			model == "swt1" -> {"path" : "models/e1/d1_swt1.dkm"},
+			model == "swt2" -> {"path" : "models/e1/d1_swt2.dkm"},
+			model == "swt3" -> {"path" : "models/e1/d1_swt3.dkm"},
+			model == "table2" -> {"path" : "models/e1/d1_table2.dkm"},
+			model == "taxi" -> {"path" : "models/e1/cin_taxi.dkm"},
+			model == "torso" -> {"path" : "models/e1/d1_torso.dkm"},
+			model == "torture1" -> {"path" : "models/e1/m_torture1.dkm"},
+			model == "torture2" -> {"path" : "models/e1/m_torture2.dkm"},
+			model == "torturebase" -> {"path" : "models/e1/torturebase.dkm"},
+			model == "torturetable" -> {"path" : "models/e1/d1_torturetable.dkm"},
+			model == "tplt" -> {"path" : "models/e1/d1_tplt.dkm"},
+			model == "trashcan" -> {"path" : "models/e1/cin_trashcan.dkm"},
+			model == "truckseat" -> {"path" : "models/e1/d1_truckseat.dkm"},
+			model == "truckwheel" -> {"path" : "models/e1/d1_truckwheel.dkm"},
+			model == "vending" -> {"path" : "models/e1/vending_mach.dkm"},
+			model == "Wilson" -> {"path" : "models/e1/d1_torturewilson.dkm"}
+	}}) = deco_e1 : "Episode 1 decoration"
+[
+	model(choices): "choose model" : 0 =
+	[
+		"anvil" : "anvil"
+		"barrel3" : "barrel3"
+		"barrel4" : "barrel4"
+		"bigpill" : "bigpill"
+		"bodybin" : "bodybin"
+		"bodyparts" : "bodyparts"
+		"books1" : "books1"
+		"books2" : "books2"
+		"brain" : "brain"
+		"candybar" : "candybar"
+		"car1" : "car1"
+		"chain1" : "chain1"
+		"chain2" : "chain2"
+		"coffin" : "coffin"
+		"coffin2" : "coffin2"
+		"compchair" : "compchair"
+		"compdesk" : "compdesk"
+		"comptubes" : "comptubes"
+		"cup" : "cup"
+		"d1_fly" : "d1_fly"
+		"deadguy" : "deadguy"
+		"deadninja" : "deadninja"
+		"deadtoshiro" : "deadtoshiro"
+		"deathtruck" : "deathtruck"
+		"dklogo" : "dklogo"
+		"dojburn" : "dojburn"
+		"dojflag" : "dojflag"
+		"dojspa " : "dojspa "
+		"dojurne " : "dojurne "
+		"doorcomp" : "doorcomp"
+		"dressr1" : "dressr1"
+		"dressr2" : "dressr2"
+		"gargdog" : "gargdog"
+		"gibpile" : "gibpile"
+		"hand2" : "hand2"
+		"head" : "head"
+		"hook1" : "hook1"
+		"htr1" : "htr1"
+		"htr2" : "htr2"
+		"htr3" : "htr3"
+		"htr4" : "htr4"
+		"katwall " : "katwall "
+		"lamp1" : "lamp1"
+		"lamp2" : "lamp2"
+		"lamp3" : "lamp3"
+		"light" : "light"
+		"mihopod" : "mihopod"
+		"mikikostasis" : "mikikostasis"
+		"pb" : "pb"
+		"pb2" : "pb2"
+		"plock" : "plock"
+		"ragearm" : "ragearm"
+		"ragerack" : "ragerack"
+		"sign1" : "sign1"
+		"sign2" : "sign2"
+		"sign3" : "sign3"
+		"sign4" : "sign4"
+		"sludgeleg" : "sludgeleg"
+		"smapill" : "smapill"
+		"spewall" : "spewall "
+		"supertorture" : "supertorture"
+		"swgrs" : "swgrs"
+		"swp12" : "swp12"
+		"swp3" : "swp3"
+		"swp4" : "swp4"
+		"swp5" : "swp5"
+		"swp6" : "swp6"
+		"swp7" : "swp7"
+		"swp8" : "swp8"
+		"swp9" : "swp9"
+		"swt1" : "swt1"
+		"swt2" : "swt2"
+		"swt3" : "swt3"
+		"table2" : "table2"
+		"taxi   " : "taxi   "
+		"torso" : "torso"
+		"torture1" : "torture1"
+		"torture2" : "torture2"
+		"torturebase" : "torturebase"
+		"torturetable" : "torturetable"
+		"tplt" : "tplt"
+		"trashcan" : "trashcan"
+		"truckseat" : "truckseat"
+		"truckwheel" : "truckwheel"
+		"vending" : "vending"
+		"Wilson" : "Wilson"
+	]
+]
 
 //
-// Decorations
+// Decorations (Episode 2)
 //
-@PointClass base(Appearflags, Target, Targetname) color(1 0 0) size(-8 -8 -32, 8 8 32) model({"path" : model, scale : scale})= deco_custom : "Custom decoration"
+@PointClass base(Appearflags, Deco) color(1 0 0) size(-8 -8 -32, 8 8 32) 
+	model({{  
+			model == "aipes" -> {"path" : "models/e2/d2_aipes.dkm"},
+			model == "aipesp" -> {"path" : "models/e2/d2_aipesp.dkm"},
+			model == "athena" -> {"path" : "models/e2/d2_athena.dkm"},
+			model == "athenap" -> {"path" : "models/e2/d2_athenap.dkm"},
+			model == "bigA" -> {"path" : "models/e2/d2_bigA.dkm"},
+			model == "bush4" -> {"path" : "models/e2/d2_bush4.dkm"},
+			model == "bush4b" -> {"path" : "models/e2/d2_bush4b.dkm"},
+			model == "candleb" -> {"path" : "models/e2/d2_candleb.dkm"},
+			model == "candleg" -> {"path" : "models/e2/d2_candleg.dkm"},
+			model == "candler" -> {"path" : "models/e2/d2_candler.dkm"},
+			model == "candley" -> {"path" : "models/e2/d2_candley.dkm"},
+			model == "carycol" -> {"path" : "models/e2/d2_carycol.dkm"},
+			model == "centurion" -> {"path" : "models/e2/d2_centurion.dkm"},
+			model == "chain1" -> {"path" : "models/e2/d2_chain1.dkm"},
+			model == "chain2" -> {"path" : "models/e2/d2_chain2.dkm"},
+			model == "chain3" -> {"path" : "models/e2/d2_chain3.dkm"},
+			model == "columntest" -> {"path" : "models/e2/d2_columntest.dkm"},
+			model == "ctflag_blue" -> {"path" : "models/e2/ctflag_blue.dkm"},
+			model == "ctflag_red" -> {"path" : "models/e2/ctflag_red.dkm"},
+			model == "d2_cart" -> {"path" : "models/e2/d2_cart.dkm"},
+			model == "dovegirl" -> {"path" : "models/e2/d2_dovegirl.dkm"},
+			model == "drape1" -> {"path" : "models/e2/d2_drape1.dkm"},
+			model == "drape1b" -> {"path" : "models/e2/d2_drape1b.dkm"},
+			model == "ferryman" -> {"path" : "models/e2/d2_ferryman.dkm"},
+			model == "garland" -> {"path" : "models/e2/d2_garland.dkm"},
+			model == "griffon" -> {"path" : "models/e2/d2_griffon.dkm"},
+			model == "grkgrl" -> {"path" : "models/e2/d2_grkgrl.dkm"},
+			model == "grkguy" -> {"path" : "models/e2/d2_grkguy.dkm"},
+			model == "harpy" -> {"path" : "models/e2/d2_harpy.dkm"},
+			model == "hedge1" -> {"path" : "models/e2/d2_hedge1.dkm"},
+			model == "hhand" -> {"path" : "models/e2/d2_hhand.dkm"},
+			model == "hhead" -> {"path" : "models/e2/d2_hhead.dkm"},
+			model == "hleg" -> {"path" : "models/e2/d2_hleg.dkm"},
+			model == "hook" -> {"path" : "models/e2/d2_hook.dkm"},
+			model == "horn" -> {"path" : "models/e2/d2_horn.dkm"},
+			model == "htorso" -> {"path" : "models/e2/d2_htorso.dkm"},
+			model == "longtree" -> {"path" : "models/e2/d2_longtree.dkm"},
+			model == "medusa" -> {"path" : "models/e2/d2_medusa.dkm"},
+			model == "poseidon" -> {"path" : "models/e2/d2_poseidon.dkm"},
+			model == "poseidonp" -> {"path" : "models/e2/d2_poseidonp.dkm"},
+			model == "pv01" -> {"path" : "models/e2/d2_pv01.dkm"},
+			model == "pv02" -> {"path" : "models/e2/d2_pv02.dkm"},
+			model == "pv03" -> {"path" : "models/e2/d2_pv03.dkm"},
+			model == "pv04" -> {"path" : "models/e2/d2_pv04.dkm"},
+			model == "pv05" -> {"path" : "models/e2/d2_pv05.dkm"},
+			model == "satyr" -> {"path" : "models/e2/d2_satyr.dkm"},
+			model == "shield1" -> {"path" : "models/e2/d2_shield1.dkm"},
+			model == "shield2" -> {"path" : "models/e2/d2_shield2.dkm"},
+			model == "skiff" -> {"path" : "models/e2/cd_skift.dkm"},
+			model == "skulls" -> {"path" : "models/e2/d2_skulls.dkm"},
+			model == "snakefire" -> {"path" : "models/e2/d2_snakefire.dkm"},
+			model == "snakegate" -> {"path" : "models/e2/d2_snakegate.dkm"},
+			model == "spider" -> {"path" : "models/e2/d2_spider.dkm"},
+			model == "spillar" -> {"path" : "models/e2/d2_spillar.dkm"},
+			model == "superfly" -> {"path" : "models/e2/d2_superfly.dkm"},
+			model == "thief" -> {"path" : "models/e2/d2_thief.dkm"},
+			model == "torch1" -> {"path" : "models/e2/d2_torch1.dkm"},
+			model == "torch1b" -> {"path" : "models/e2/d2_torch1b.dkm"},
+			model == "torch2" -> {"path" : "models/e2/d2_torch2.dkm"},
+			model == "torch3" -> {"path" : "models/e2/d2_torch3.dkm"},
+			model == "tritray" -> {"path" : "models/e2/d2_tritray.dkm"},
+			model == "vase01" -> {"path" : "models/e2/d2_vase01.dkm"},
+			model == "vase02" -> {"path" : "models/e2/d2_vase02.dkm"},
+			model == "vase03" -> {"path" : "models/e2/d2_vase03.dkm"},
+			model == "vase04" -> {"path" : "models/e2/d2_vase04.dkm"},
+			model == "vase05" -> {"path" : "models/e2/d2_vase05.dkm"},
+			model == "vase06" -> {"path" : "models/e2/d2_vase06.dkm"},
+			model == "vase07" -> {"path" : "models/e2/d2_vase07.dkm"},
+			model == "vase08" -> {"path" : "models/e2/d2_vase08.dkm"},
+			model == "vase09" -> {"path" : "models/e2/d2_vase09.dkm"},
+			model == "vase10" -> {"path" : "models/e2/d2_vase10.dkm"},
+			model == "vasegib1" -> {"path" : "models/e2/d2_vasegib1.dkm"},
+			model == "vasegib2" -> {"path" : "models/e2/d2_vasegib2.dkm"},
+			model == "vasegib3" -> {"path" : "models/e2/d2_vasegib3.dkm"}
+	}})= deco_e2 : "Episode 2 decoration"
 [
-	spawnflags(Flags) =
+	model(choices): "choose model" : 0 =
 	[
-		1: "DECO_EXPLODE" : 0
-		2: "NO_EXPLODE_NO_BREAK" : 0
-		4: "DECO_PUSHABLE" : 0
-		8: "WOOD_DEBRIS" : 0
-		16: "METAL_DEBRIS" : 0
-		32: "GLASS_DEBRIS" : 0
-		64: "GIB_DEBRIS" : 0
-		128: "ROTATE" : 0
-		256: "DECO_TRANSLUCENT" : 0
+		"aipes" : "aipes"
+		"aipesp" : "aipesp"
+		"athena" : "athena"
+		"athenap" : "athenap"
+		"bigA" : "bigA"
+		"bush4" : "bush4"
+		"bush4b" : "bush4b"
+		"candleb" : "candleb"
+		"candleg" : "candleg"
+		"candler" : "candler"
+		"candley" : "candley"
+		"carycol" : "carycol"
+		"centurion" : "centurion"
+		"chain1" : "chain1"
+		"chain2" : "chain2"
+		"chain3" : "chain3"
+		"columntest" : "columntest"
+		"ctflag_blue" : "ctflag_blue"
+		"ctflag_red" : "ctflag_red"
+		"d2_cart" : "d2_cart"
+		"dovegirl" : "dovegirl"
+		"drape1" : "drape1"
+		"drape1b" : "drape1b"
+		"ferryman" : "ferryman"
+		"garland" : "garland"
+		"griffon" : "griffon"
+		"grkgrl" : "grkgrl"
+		"grkguy" : "grkguy"
+		"harpy" : "harpy"
+		"hedge1" : "hedge1"
+		"hhand" : "hhand"
+		"hhead" : "hhead"
+		"hleg" : "hleg"
+		"hook" : "hook"
+		"horn" : "horn"
+		"htorso" : "htorso"
+		"longtree" : "longtree"
+		"medusa" : "medusa"
+		"poseidon" : "poseidon"
+		"poseidonp" : "poseidonp"
+		"pv01" : "pv01"
+		"pv02" : "pv02"
+		"pv03" : "pv03"
+		"pv04" : "pv04"
+		"pv05" : "pv05"
+		"satyr" : "satyr"
+		"shield1" : "shield1"
+		"shield2" : "shield2"
+		"skiff" : "skiff"
+		"skulls" : "skulls"
+		"snakefire" : "snakefire"
+		"snakegate" : "snakegate"
+		"spider" : "spider"
+		"spillar" : "spillar"
+		"superfly" : "superfly"
+		"thief" : "thief"
+		"torch1" : "torch1"
+		"torch1b" : "torch1b"
+		"torch2" : "torch2"
+		"torch3" : "torch3"
+		"tritray" : "tritray"
+		"vase01" : "vase01"
+		"vase02" : "vase02"
+		"vase03" : "vase03"
+		"vase04" : "vase04"
+		"vase05" : "vase05"
+		"vase06" : "vase06"
+		"vase07" : "vase07"
+		"vase08" : "vase08"
+		"vase09" : "vase09"
+		"vase10" : "vase10"
+		"vasegib1" : "vasegib1"
+		"vasegib2" : "vasegib2"
+		"vasegib3" : "vasegib3"
 	]
-	
+]
+//
+// Decorations (Episode 3)
+//
+@PointClass base(Appearflags, Deco) color(1 0 0) size(-8 -8 -32, 8 8 32) 
+	model({{ 
+			model == "alter" -> {"path" : "models/e3/d3_alter.dkm"},
+			model == "axe" -> {"path" : "models/e3/d3_axe.dkm"},
+			model == "barfloat" -> {"path" : "models/e3/d3_barfloat.dkm"},
+			model == "barrel" -> {"path" : "models/e3/d3_barrel.dkm"},
+			model == "bed1" -> {"path" : "models/e3/d3_bed1.dkm"},
+			model == "bone" -> {"path" : "models/e3/d3_bone.dkm"},
+			model == "brazier" -> {"path" : "models/e3/d3_brazier.dkm"},
+			model == "bubcorp1" -> {"path" : "models/e3/d3_bubcorpse.dkm"},
+			model == "bubcorp2" -> {"path" : "models/e3/d3_bubc2.dkm"},
+			model == "bubcorp3" -> {"path" : "models/e3/d3_bubc3.dkm"},
+			model == "bubskull" -> {"path" : "models/e3/d3_bubskull.dkm"},
+			model == "bubspine" -> {"path" : "models/e3/d3_bubspine.dkm"},
+			model == "candle" -> {"path" : "models/e3/d3_candle.dkm"},
+			model == "cart" -> {"path" : "models/e3/d3_cart.dkm"},
+			model == "chair2" -> {"path" : "models/e3/d3_chair2.dkm"},
+			model == "corpse" -> {"path" : "models/e3/d3_corps.dkm"},
+			model == "croc" -> {"path" : "models/e3/m_croco.dkm"},
+			model == "cross" -> {"path" : "models/e3/e3_cross.dkm"},
+			model == "crow" -> {"path" : "models/e3/d3_crow.dkm"},
+			model == "crowscage" -> {"path" : "models/e3/d3_crowscage.dkm"},
+			model == "deadtree" -> {"path" : "models/e3/d3_deadtree.dkm"},
+			model == "deco1" -> {"path" : "models/e3/d3_dkdeco1.dkm"},
+			model == "dragonstatue" -> {"path" : "models/e3/d3_dragonstatue.dkm"},
+			model == "e3ctflag_blue" -> {"path" : "models/e3/e3ctflag_blue.dkm"},
+			model == "e3ctflag_red" -> {"path" : "models/e3/e3ctflag_red.dkm"},
+			model == "fireshelf" -> {"path" : "models/e3/d3_fireshelf.dkm"},
+			model == "flag1" -> {"path" : "models/e3/d3_flag1.dkm"},
+			model == "flag2" -> {"path" : "models/e3/d3_flag2.dkm"},
+			model == "flag3" -> {"path" : "models/e3/d3_flag3.dkm"},
+			model == "flamhold" -> {"path" : "models/e3/d3_flamehold.dkm"},
+			model == "flask1" -> {"path" : "models/e3/d3_flask1.dkm"},
+			model == "flask2" -> {"path" : "models/e3/d3_flask2.dkm"},
+			model == "flask3" -> {"path" : "models/e3/d3_flask3.dkm"},
+			model == "flask4" -> {"path" : "models/e3/d3_flask4.dkm"},
+			model == "gar2" -> {"path" : "models/e3/d3_dkgar2.dkm"},
+			model == "grain" -> {"path" : "models/e3/d3_grain.dkm"},
+			model == "ice" -> {"path" : "models/e3/d3_ice.dkm"},
+			model == "iceshard" -> {"path" : "models/e3/d3_iceshard.dkm"},
+			model == "kegs" -> {"path" : "models/e3/d3_kegs.dkm"},
+			model == "mug" -> {"path" : "models/e3/d3_mug.dkm"},
+			model == "organ" -> {"path" : "models/e3/d3_organ.dkm"},
+			model == "rat" -> {"path" : "models/e3/d3_rat.dkm"},
+			model == "ribcage" -> {"path" : "models/e3/d3_ribcage.dkm"},
+			model == "rod" -> {"path" : "models/e3/d3_rod.dkm"},
+			model == "shield" -> {"path" : "models/e3/d3_shield.dkm"},
+			model == "skull" -> {"path" : "models/e3/d3_skull.dkm"},
+			model == "skullgate" -> {"path" : "models/e3/d3_skullgate.dkm"},
+			model == "stool" -> {"path" : "models/e3/d3_stool.dkm"},
+			model == "sword" -> {"path" : "models/e3/d3_sword.dkm"},
+			model == "table" -> {"path" : "models/e3/d3_table.dkm"},
+			model == "toga" -> {"path" : "models/e3/m_toga_dude.dkm"},
+			model == "togag" -> {"path" : "models/e3/m_toga_girl.dkm"},
+			model == "torch" -> {"path" : "models/e3/d3_torch.dkm"},
+			model == "truck" -> {"path" : "models/e3/e1_truck.dkm"},
+			model == "wingsk" -> {"path" : "models/e3/d3_wingsk.dkm"},
+			model == "winlight1" -> {"path" : "models/e3/d3_winlight1.dkm"},
+			model == "wynbook" -> {"path" : "models/e3/d3_wynbook.dkm"},
+			model == "wynorb" -> {"path" : "models/e3/d3_wynor.dkm"},
+			model == "wynstand" -> {"path" : "models/e3/d3_wynstand.dkm"}
+		 }}) = deco_e3 : "Episode 3 decoration"
+[
+	model(choices): "choose model" : 0 =
+	[
+		"alter" : "alter"
+		"axe" : "axe"
+		"barfloat" : "barfloat"
+		"barrel" : "barrel"
+		"bed1" : "bed1"
+		"bone" : "bone"
+		"brazier" : "brazier"
+		"bubcorp1" : "bubcorp1"
+		"bubcorp2" : "bubcorp2"
+		"bubcorp3" : "bubcorp3"
+		"bubskull" : "bubskull"
+		"bubspine" : "bubspine"
+		"candle" : "candle"
+		"cart" : "cart"
+		"chair2" : "chair2"
+		"corpse" : "corpse"
+		"croc" : "croc"
+		"cross" : "cross"
+		"crow" : "crow"
+		"crowscage" : "crowscage"
+		"deadtree" : "deadtree"
+		"deco1" : "deco1"
+		"dragonstatue" : "dragonstatue"
+		"e3ctflag_blue" : "e3ctflag_blue"
+		"e3ctflag_red" : "e3ctflag_red"
+		"fireshelf" : "fireshelf"
+		"flag1" : "flag1"
+		"flag2" : "flag2"
+		"flag3" : "flag3"
+		"flamhold" : "flamhold"
+		"flask1" : "flask1"
+		"flask2" : "flask2"
+		"flask3" : "flask3"
+		"flask4" : "flask4"
+		"gar2" : "gar2"
+		"grain" : "grain"
+		"ice" : "ice"
+		"iceshard" : "iceshard"
+		"kegs" : "kegs"
+		"mug" : "mug"
+		"organ" : "organ"
+		"rat" : "rat"
+		"ribcage" : "ribcage"
+		"rod" : "rod"
+		"shield" : "shield"
+		"skull" : "skull"
+		"skullgate" : "skullgate"
+		"stool" : "stool"
+		"sword" : "sword"
+		"table" : "table"
+		"toga" : "toga"
+		"togag" : "togag"
+		"torch" : "torch"
+		"truck" : "truck"
+		"wingsk" : "wingsk"
+		"winlight1" : "winlight1"
+		"wynbook" : "wynbook"
+		"wynorb" : "wynorb"
+		"wynstand" : "wynstand"
+	]
+]
+
+//
+// Decorations (Episode 4)
+//
+@PointClass base(Appearflags, Deco) color(1 0 0) size(-8 -8 -32, 8 8 32)
+	model({{ 
+            model == "1stwheel" -> {"path" : "models/e4/d4_wheel.dkm"},
+            model == "banner1" -> {"path" : "models/e4/d4_banner.dkm"}, 
+            model == "barrel1" -> {"path" : "models/e4/d4_brl1.dkm"},
+            model == "barrel2" -> {"path" : "models/e4/d4_brl2.dkm"},
+            model == "barrel3" -> {"path" : "models/e4/d4_brl3.dkm"},
+            model == "bonsai1" -> {"path" : "models/e4/d4_bon.dkm"},
+            model == "bonsai2" -> {"path" : "models/e4/d4_bon2.dkm"},
+            model == "bonsai3" -> {"path" : "models/e4/d4_bon3.dkm"},
+            model == "bottle" -> {"path" : "models/e4/d4_bottle.dkm"},
+            model == "bush1" -> {"path" : "models/e4/d4_bush1.dkm"},
+            model == "d4_afish" -> {"path" : "models/e4/d4_afish.dkm"}, 
+            model == "d4_bot1" -> {"path" : "models/e4/d4_bot1.dkm"},
+            model == "d4_bot2" -> {"path" : "models/e4/d4_bot2.dkm"},
+            model == "d4_bread" -> {"path" : "models/e4/d4_bread.dkm"}, 
+            model == "d4_cof" -> {"path" : "models/e4/d4_cof.dkm"},
+            model == "d4_cup" -> {"path" : "models/e4/d4_cup.dkm"},
+            model == "d4_gull" -> {"path" : "models/e4/d4_gull.dkm"},
+            model == "d4_rat" -> {"path" : "models/e4/d4_rat.dkm"},
+            model == "demon" -> {"path" : "models/e4/d4_demon.dkm"},
+            model == "goldencup" -> {"path" : "models/e4/d4_gcup.dkm"}, 
+            model == "ironbox" -> {"path" : "models/e4/d4_iron.dkm"},
+            model == "japplant1" -> {"path" : "models/e4/d4_jppl1.dkm"},
+            model == "japplant2" -> {"path" : "models/e4/d4_jppl2.dkm"},
+            model == "jappot1" -> {"path" : "models/e4/d4_jppt1.dkm"},
+            model == "jappot2" -> {"path" : "models/e4/d4_jppt2.dkm"},
+            model == "kendorack" -> {"path" : "models/e4/d4_kendo.dkm"},
+            model == "lantern" -> {"path" : "models/e4/d4_lant.dkm"},
+            model == "logs" -> {"path" : "models/e4/d4_log.dkm"},
+            model == "pipeend" -> {"path" : "models/e4/d4_pipe1.dkm"},
+            model == "pipend2" -> {"path" : "models/e4/d4_pipe2.dkm"},
+            model == "pot1" -> {"path" : "models/e4/d4_pan1.dkm"},
+            model == "pracswo" -> {"path" : "models/e4/d4_sword.dkm"}, 
+            model == "rock1" -> {"path" : "models/e4/d4_rock1.dkm"},
+            model == "samarmor" -> {"path" : "models/e4/d4_armor.dkm"}, 
+            model == "sodacan" -> {"path" : "models/e4/d4_soda.dkm"},
+            model == "Tosh" -> {"path" : "models/e4/Toshiro_ebihara_low.dkm"},
+            model == "trashcan" -> {"path" : "models/e4/d4_trashcan.dkm"},
+            model == "tray" -> {"path" : "models/e4/d4_tray.dkm"},
+            model == "wires1" -> {"path" : "models/e4/d4_wires1.dkm"},
+            model == "daikatana" -> {"path": "models/e4/d4_daikatana.dkm"}
+		 }})
+	 = deco_e4 : "Episode 4 decoration"
+[
+	model(choices): "choose model" : 0 =
+	[
+		"1stwheel" : "1stwheel"
+		"banner1" : "banner1"
+		"barrel1" : "barrel1"
+		"barrel2" : "barrel2"
+		"barrel3" : "barrel3"
+		"bonsai1" : "bonsai1"
+		"bonsai2" : "bonsai2"
+		"bonsai3" : "bonsai3"
+		"bottle" : "bottle"
+		"bush1" : "bush1"
+		"d4_afish" : "d4_afish"
+		"d4_bot1" : "d4_bot1"
+		"d4_bot2" : "d4_bot2"
+		"d4_bread" : "d4_bread"
+		"d4_cof" : "d4_cof"
+		"d4_cup" : "d4_cup"
+		"d4_gull" : "d4_gull"
+		"d4_rat" : "d4_rat"
+		"daikatana" : "daikatana"
+		"demon" : "demon"
+		"goldencup" : "goldencup"
+		"ironbox" : "ironbox"
+		"japplant1" : "japplant1"
+		"japplant2" : "japplant2"
+		"jappot1" : "jappot1"
+		"jappot2" : "jappot2"
+		"kendorack" : "kendorack"
+		"lantern" : "lantern"
+		"logs" : "logs"
+		"pipeend" : "pipeend"
+		"pipend2" : "pipend2"
+		"pot1" : "pot1"
+		"pot3" : "pot3"
+		"pracswo" : "pracswo"
+		"rock1" : "rock1"
+		"samarmor" : "samarmor"
+		"shitzu" : "shitzu"
+		"sodacan" : "sodacan"
+		"Tosh" : "Tosh"
+		"trashcan" : "trashcan"
+		"tray" : "tray"
+		"wires1" : "wires1"
+
+	]
+]
+//
+// Decorations (custom)
+//
+@PointClass base(Appearflags, Target, Targetname, Deco) color(1 0 0) size(-8 -8 -32, 8 8 32) model({"path" : model, scale : scale})= deco_custom : "Custom decoration"
+[
 	exploding(choices): "0 or 1" : 0 =
 	[
 		0: "False"
 		1: "True"
 	]
 
-	damage(integer): "damage applied when exploding. Default is 15." : 15
-	scale(float): "Scale of deco. Default 1.0." : "1.0"
 	model(string): "filename of .dkm model, e.g. models/e1/a_c4.dkm"
 	mass(float): "default 1.0" : "1.0"
-	frame(integer): "allows you to specify the starting frame for the model."
-	x_speed(integer): "speed to rotate along x axis in degrees per second"
-	y_speed(integer): "speed to rotate along y axis in degrees per second"
-	z_speed(integer): "speed to rotate along z axis in degrees per second"
-	alpha(float): "range 0.0-1.0. Only used if TRANSLUCENT is flagged"
-	spawnname(string): "classname of entity to throw out upon death"
     movetype(string): "none, toss, bounce, float" : "none"
     solidtype(string): "bbox, not" : "bbox"
     gibtype(string): "wood, metal, glass, gibs, default is non-gibbable" : "non-gibbable"
@@ -1364,7 +1926,6 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	mins(string): "bbox lower bounds, e.g. -8, -8, -32"
 	maxs(string): "bbox upper bounds, eg.g. 8, 8, 32"
 	animseq(integer): "allows you to specifies an animation sequence for the model this overrides the frame key.. valid sequences are 0-4  DEFAULT is 0": 0
-	seq0-seq4(string): "frames or frame sequences of animation use '-' for a set of frames use '~' to loop the frames"
 ]
 
 
