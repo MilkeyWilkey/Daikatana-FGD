@@ -93,7 +93,8 @@
 		128: "ROTATE" : 0
 		256: "DECO_TRANSLUCENT" : 0
 	]
-	damage(integer): "damage applied when exploding. Default is 15." : 15
+	damage(integer): "damage applied when exploding. Default is 25." : 25
+	health(float): "How much damage it will take until it breaks. Default 20. Requires gib type to be set" : "20"
 	scale(float): "Scale of deco. Default 1.0." : "1.0"
 	mass(float): "*optional* - including this overrides the mass value in decoinfo.txt" 
 	frame(integer): "allows you to specify the starting frame for the model."
@@ -1460,8 +1461,8 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 		"dklogo" : "dklogo"
 		"dojburn" : "dojburn"
 		"dojflag" : "dojflag"
-		"dojspa " : "dojspa "
-		"dojurne " : "dojurne "
+		"dojspa" : "dojspa"
+		"dojurne" : "dojurne"
 		"doorcomp" : "doorcomp"
 		"dressr1" : "dressr1"
 		"dressr2" : "dressr2"
@@ -1474,7 +1475,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 		"htr2" : "htr2"
 		"htr3" : "htr3"
 		"htr4" : "htr4"
-		"katwall " : "katwall "
+		"katwall" : "katwall"
 		"lamp1" : "lamp1"
 		"lamp2" : "lamp2"
 		"lamp3" : "lamp3"
@@ -1507,7 +1508,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 		"swt2" : "swt2"
 		"swt3" : "swt3"
 		"table2" : "table2"
-		"taxi   " : "taxi   "
+		"taxi" : "taxi"
 		"torso" : "torso"
 		"torture1" : "torture1"
 		"torture2" : "torture2"
@@ -1909,7 +1910,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 //
 // Decorations (custom)
 //
-@PointClass base(Appearflags, Target, Targetname, Deco) color(1 0 0) size(-8 -8 -32, 8 8 32) model({"path" : model, scale : scale})= deco_custom : "Custom decoration"
+@PointClass base(Appearflags, Target, Targetname, Deco) color(1 0 0) size(-16 -16 -16, 16 16 16) model({"path" : model, scale : scale})= deco_custom : "Custom decoration"
 [
 	exploding(choices): "0 or 1" : 0 =
 	[
