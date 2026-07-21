@@ -227,7 +227,7 @@
 	light(integer) : "Intensity of light" : 300
 	_cone(integer) : "Size of light (spotlight) default: 10"
     lightstyle(string) : "String to define lightstyle"
-	_color(color255) : "RGB Light color"
+	_color(color) : "RGB Light color"
 ]
 
 @PointClass base(Appearflags) color(0.9 0.9 0.9) size(-8 -8 -8, 8 8 8) = light_flare : "Light (Flare)"

@@ -1,0 +1,16 @@
+//
+// Daikatana game definition file (.fgd)
+// All entities
+// for Trenchbroom
+// last update: 
+// Version: 1
+//
+// written by MilkeyWilkey
+// email me with improvements and suggestions
+//
+
+@include "Common.fgd"
+@include "Episode 1.fgd"
+@include "Episode 2.fgd"
+@include "Episode 3.fgd"
+@include "Episode 4.fgd"
