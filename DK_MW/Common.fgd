@@ -2135,7 +2135,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 @PointClass base(Targetname) color(0 0.5 0.8) size(-8 -8 -8, 8 8 8) = target_blaster
 [
 	angles(string) : "direction to fire"
-	damage(float) : "Default 15" : 15
-	speed(float) :	"Default 1000" : 1000
+	damage(float) : "Default 15" : "15"
+	speed(float) :	"Default 1000" : "1000"
 	target(target_destination) : "name of ent to shoot at"
 ]
