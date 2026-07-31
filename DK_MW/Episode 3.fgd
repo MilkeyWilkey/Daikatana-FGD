@@ -2,11 +2,11 @@
 // Daikatana game definition file (.fgd)
 // Episode 3 entities
 // for Trenchbroom
-// last update: 6 Oct, 2018
-// Version: 1
 //
-// written by Dekonega <dekonega(at)windowslive.com>
+// originally written by Dekonega / dekonega(at)windowslive.com
 // email me with improvements and suggestions
+//
+// updated and expanded by MilkeyWilkey
 //
 
 @include "Common.fgd"
