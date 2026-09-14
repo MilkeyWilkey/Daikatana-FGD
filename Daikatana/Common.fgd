@@ -52,10 +52,6 @@
 //
 // Common properties
 //
-@BaseClass = Target
-[
-	target(target_destination) : "Target"
-]
 
 @BaseClass = Killtarget
 [
@@ -64,6 +60,7 @@
 @BaseClass = Targetname
 [
 	targetname(target_source) : "Name"
+	target(target_destination) : "Target"
 ]
 
 @BaseClass = Sidekickflags
@@ -151,7 +148,7 @@
 	sound(string): "sound played when the key is used"
 ]
 
-@BaseClass base(Appearflags, Target, Sidekickflags) color(0 0.5 0.8) size(-16 -16 0, 16 16 32) = Ammo
+@BaseClass base(Appearflags, Targetname, Sidekickflags) color(0 0.5 0.8) size(-16 -16 0, 16 16 32) = Ammo
 [
 
 ]
@@ -165,12 +162,12 @@
 	]
 ]
 
-@BaseClass base(Appearflags, Target, Sidekickflags) color(0 0.5 0.8) size(-20 -20 0, 20 20 32) = Weapons
+@BaseClass base(Appearflags, Targetname, Sidekickflags) color(0 0.5 0.8) size(-20 -20 0, 20 20 32) = Weapons
 [
 
 ]
 
-@BaseClass base(Appearflags, Target, Targetname) = MonsterFlags
+@BaseClass base(Appearflags, Targetname) = MonsterFlags
 [
 	spawnflags(Flags) =
 	[
@@ -192,7 +189,7 @@
 	speak(integer): "Range that the monster can speak to other monsters so they can help out."
 ]
 
-@BaseClass base(Appearflags, Target, Targetname, Killtarget) = Trigger
+@BaseClass base(Appearflags, Targetname, Killtarget) = Trigger
 [
 	health(integer): "amount of damage taken before triggered."
 	delay(float): ""
@@ -231,7 +228,7 @@
 	]
 ]
 
-@PointClass base(Appearflags, LightStyleFX, Target, Targetname) color(0 1 0) size(-8 -8 -8, 8 8 8) = light : "Light"
+@PointClass base(Appearflags, LightStyleFX, Targetname) color(0 1 0) size(-8 -8 -8, 8 8 8) = light : "Light"
 [
 	spawnflags(Flags) =
 	[
@@ -347,7 +344,7 @@
 	height(integer) : "distance the snow/rain is supposed to fall"
 ]
 
-@PointClass base(Appearflags, Target, Targetname) color(1 1 1) size(-8 -8 -8, 8 8 8) = effect_lightning : "Lightning Effect"
+@PointClass base(Appearflags, Targetname) color(1 1 1) size(-8 -8 -8, 8 8 8) = effect_lightning : "Lightning Effect"
 [
 	spawnflags(Flags) =
 	[
@@ -400,7 +397,7 @@
 //
 // Specialised Effects
 //
-@PointClass base(Appearflags, Target, Targetname) color(.65 0.65 0.15) size(-8 -8 -8, 8 8 8) = sfx_complex_particle : "Complex Particle Effect"
+@PointClass base(Appearflags, Targetname) color(.65 0.65 0.15) size(-8 -8 -8, 8 8 8) = sfx_complex_particle : "Complex Particle Effect"
 [
 	spawnflags(flags) =
 	[
@@ -437,7 +434,7 @@
 //
 // Misc
 //
-@BaseClass base(Appearflags, Target, Targetname) color(1 0 0) size(-16 -16 -24, 16 16 32) = HealthStations []
+@BaseClass base(Appearflags, Targetname) color(1 0 0) size(-16 -16 -24, 16 16 32) = HealthStations []
 
 @PointClass base(HealthStations) 
 model({{
@@ -486,7 +483,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 
 @PointClass base(Appearflags) color(1 0.5 0) size(-8 -8 -8, 8 8 8) = misc_lavaball_drop : "Lavaball drop" []
 
-@PointClass base(Appearflags, Target) color(1 0.5 0) size(-8 -8 -8, 8 8 8) = misc_lavaball_toss : "Lavaball toss"
+@PointClass base(Appearflags, Targetname) color(1 0.5 0) size(-8 -8 -8, 8 8 8) = misc_lavaball_toss : "Lavaball toss"
 [
 	// target(target_destination) : "can be triggered"
 	mintime(float) : "minimum time between tosses (default = 4.0 seconds)" : "4.0"
@@ -504,7 +501,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 
 @SolidClass base(Appearflags) color(0 0.5 0.8) = func_group : "Group" []
 
-@PointClass base(Appearflags, Target, Targetname) color(0 0.5 0.8) size(-4 -4 -4, 4 4 4) = func_gib : "Gib Generator"
+@PointClass base(Appearflags, Targetname) color(0 0.5 0.8) size(-4 -4 -4, 4 4 4) = func_gib : "Gib Generator"
 [
 	spawnflags(Flags) =
 	[
@@ -524,7 +521,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	VOLUME(float): "Volume for sound." 
 ]
 
-@SolidClass base(Appearflags, Target, Targetname) color(0 0.5 0.8) = func_door : "Door"
+@SolidClass base(Appearflags, Targetname) color(0 0.5 0.8) = func_door : "Door"
 [
 	spawnflags(Flags) =
 	[
@@ -620,7 +617,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	spawnquake(integer): "0 = ignore (default), 1 = spawn a small quake when the brush stops" : 0
 ]
 
-@SolidClass base(Appearflags, Target, Targetname) color(0 0.5 0.8) = func_rotate : "Rotate"
+@SolidClass base(Appearflags, Targetname) color(0 0.5 0.8) = func_rotate : "Rotate"
 [
 	 spawnflags(Flags) =
 	 [
@@ -634,7 +631,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	dmg(integer): "damage to inflict when blocked (2 default)." : 2	
 ]
 
-@SolidClass base(Appearflags, Target, Targetname) color(0 0.5 0.8) = func_wall : "Wall"
+@SolidClass base(Appearflags, Targetname) color(0 0.5 0.8) = func_wall : "Wall"
 [
 	spawnflags(Flags) =
 	[
@@ -652,7 +649,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	aiscript(string): "name of the AI script to run when toggled"
 ]
 
-@SolidClass base(Appearflags, Target, Targetname) color(0 0.5 0.8) = func_button : "Button"
+@SolidClass base(Appearflags, Targetname) color(0 0.5 0.8) = func_button : "Button"
 [
 	spawnflags(Flags) =
 	[
@@ -673,7 +670,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	aiscript(string): "name of the AI script to run"
 ]
 
-@SolidClass base(Appearflags, Target, Targetname) color(0 0.5 0.8) = func_multi_button : "Multi button"
+@SolidClass base(Appearflags, Targetname) color(0 0.5 0.8) = func_multi_button : "Multi button"
 [
 	spawnflags(Flags) =
 	[
@@ -692,7 +689,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	count(integer): "number of positions this button has"
 ]
 
-@PointClass base(Appearflags, Target, Targetname) color(0.5 0.3 0) size(-8 -8 -8, 8 8 8) = path_corner_train : "Tran path corner"
+@PointClass base(Appearflags, Targetname) color(0.5 0.3 0) size(-8 -8 -8, 8 8 8) = path_corner_train : "Tran path corner"
 [
 	spawnflags(Flags) =
 	[
@@ -746,7 +743,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	sound_close_finish(string): "name of the sound to play when closing completes, ie. doors/slam.wav"
 ]
 
-@SolidClass base(Appearflags, Target, Targetname) color(0 0.5 0.8) = func_wall_explode : "Exploding wall"
+@SolidClass base(Appearflags, Targetname) color(0 0.5 0.8) = func_wall_explode : "Exploding wall"
 [
 	spawnflags(Flags) =
 	[
@@ -771,7 +768,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	mindamage(integer): "minimum damage it takes to destroy this wall. Any damage less than mindamage will be healed instantly so wall cannot be warn down."
 ]
 
-@SolidClass base(Appearflags, Target) color(0 0.5 0.8) = func_debris : "Debris"
+@SolidClass base(Appearflags, Targetname) color(0 0.5 0.8) = func_debris : "Debris"
 [
 	spawnflags(Flags) =
 	[
@@ -791,7 +788,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	damage(integer): "amount of damage to do when hitting another object if MOMENTUM_DAMAGE is selected,"
 ]
 
-@SolidClass base(Appearflags, Target) color(0 0.5 0.8) = func_debris_visible : "Visible debris"
+@SolidClass base(Appearflags, Targetname) color(0 0.5 0.8) = func_debris_visible : "Visible debris"
 [
 	spawnflags(Flags) =
 	[
@@ -830,7 +827,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	_color(color255): "use the color selection dialog to select the color of the light"
 ]
 
-@SolidClass base(Appearflags, Target) color(0 0.5 0.8) = func_explosive : "Explosive"
+@SolidClass base(Appearflags, Targetname) color(0 0.5 0.8) = func_explosive : "Explosive"
 [
 	spawnflags(Flags) =
 	[
@@ -862,7 +859,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	max(integer): "0 to 8160 - maximum distance (volume none)"
 ]
 
-@SolidClass base(Appearflags, Target, Targetname) color(0 0.5 0.8) = func_water : "Water"
+@SolidClass base(Appearflags, Targetname) color(0 0.5 0.8) = func_water : "Water"
 [
 	spawnflags(Flags) =
 	[
@@ -893,7 +890,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	sound_close_finish(string): "name of the sound to play when empty"
 ]
 
-@PointClass base(Appearflags, Target, Targetname) color(0.3 0.1 0.6) size(-8 -8 -8, 8 8 8) = func_timer : "Timer"
+@PointClass base(Appearflags, Targetname) color(0.3 0.1 0.6) size(-8 -8 -8, 8 8 8) = func_timer : "Timer"
 [
 	spawnflags(Flags) =
 	[
@@ -907,7 +904,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	pausetime(integer): "additional delay used only the very first time and only if spawned with START_ON"
 ]
 
-@SolidClass base(Appearflags, Target, Targetname) color(0 0.5 0.8) = func_event_generator : "Event generator"
+@SolidClass base(Appearflags, Targetname) color(0 0.5 0.8) = func_event_generator : "Event generator"
 [
 	spawnflags(Flags) =
 	[
@@ -919,14 +916,14 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	sound(string): "Sound to play when triggered."
 ]
 
-@SolidClass base(Appearflags, Target) color(0 0.5 0.8) = func_monitor : "Monitor"
+@SolidClass base(Appearflags, Targetname) color(0 0.5 0.8) = func_monitor : "Monitor"
 [
 	fov(integer): "the field of view when looking through this camera"
 	delay(integer): "Amount of time to delay before showing the monitor display."
 	wait(integer): "Amount of time to wait before allowing the user to esc from display."
 ]
 
-@SolidClass base(Appearflags, Target, Targetname) color(0 0.5 0.8) = func_train : "Train"
+@SolidClass base(Appearflags, Targetname) color(0 0.5 0.8) = func_train : "Train"
 [
 	spawnflags(Flags) =
 	[
@@ -957,7 +954,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	message(string): "the command to send to the console when triggered."
 ]
 
-@PointClass base(Appearflags, Target, Targetname) color(1 1 0) size(-8 -8 -8, 8 8 8) = target_attractor : "Attractor"
+@PointClass base(Appearflags, Targetname) color(1 1 0) size(-8 -8 -8, 8 8 8) = target_attractor : "Attractor"
 [
 	triggerindex(integer): "the lower the index, the higher it's priority (i.e. it attracts 1st)."
 ]
@@ -1016,7 +1013,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	message(string): "message to display upon last triggering"
 ]
 
-@SolidClass base(Appearflags, Target, Targetname) color(0.5 0.5 0.5) = trigger_sidekick : "Sidekick trigger"
+@SolidClass base(Appearflags, Targetname) color(0.5 0.5 0.5) = trigger_sidekick : "Sidekick trigger"
 [
     toggle(choices): "Toggle - 0 = off, 1 = on" : 0 =
     [
@@ -1029,7 +1026,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
     message(string): "message to display upon last triggering"
 ]
 
-@SolidClass base(Appearflags, Target, Targetname) color(0.5 0.5 0.5) = trigger_multiple : "Multiple trigger"
+@SolidClass base(Appearflags, Targetname) color(0.5 0.5 0.5) = trigger_multiple : "Multiple trigger"
 [
 	spawnflags(Flags) =
 	[
@@ -1069,7 +1066,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	z(integer): "z location of for the sidekicks to move when triggered"
 ]
 
-@SolidClass base(Appearflags, Target) color(0.5 0.5 0.5) = trigger_changelevel : "Change level"
+@SolidClass base(Appearflags, Targetname) color(0.5 0.5 0.5) = trigger_changelevel : "Change level"
 [
 	spawnflags(Flags) =
 	[
@@ -1114,7 +1111,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	angles(string) : "pitch yaw roll direction to push"
 ]
 
-@SolidClass base(Appearflags, Target, Targetname) color(0.5 0.5 0.5) = trigger_teleport : "Teleport trigger"
+@SolidClass base(Appearflags, Targetname) color(0.5 0.5 0.5) = trigger_teleport : "Teleport trigger"
 [
 	spawnflags(Flags) =
 	[
@@ -1131,7 +1128,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	teleport(target_destination): "targetname of the entity to telport. use 'player' to teleport the player"
 ]
 
-@SolidClass base(Appearflags, Target, Targetname) color(0.5 0.5 0.5) = trigger_once : "triggers once, then removes itself"
+@SolidClass base(Appearflags, Targetname) color(0.5 0.5 0.5) = trigger_once : "triggers once, then removes itself"
 [
 	spawnflags(Flags) =
 	[
@@ -1148,7 +1145,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	message(string): "text message to display when triggered"
 ]
 
-@SolidClass base(Appearflags, Target, Targetname) color(0.5 0.5 0.5) = trigger_toggle : "triggers once, then when you exit resets itself to be triggered again"
+@SolidClass base(Appearflags, Targetname) color(0.5 0.5 0.5) = trigger_toggle : "triggers once, then when you exit resets itself to be triggered again"
 [
 	spawnflags(Flags) =
 	[
@@ -1159,7 +1156,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	]
 ]
 
-@PointClass base(Appearflags, Targetname, Target) color(0.5 0.5 0.5) size(-8 -8 -8, 8 8 8) = trigger_relay : "Relay trigger"
+@PointClass base(Appearflags, Targetname) color(0.5 0.5 0.5) size(-8 -8 -8, 8 8 8) = trigger_relay : "Relay trigger"
 [
 	sound(string): "name of sound to play upon firing"
 	delay(integer): "delay"
@@ -1167,7 +1164,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	message(string): "text message to display when triggered"
 ]
 
-@PointClass base(Appearflags, Targetname, Target) color(0.5 0.5 0.5) size(-8 -8 -8, 8 8 8) = trigger_changetarget : "Change target trigger"
+@PointClass base(Appearflags, Targetname) color(0.5 0.5 0.5) size(-8 -8 -8, 8 8 8) = trigger_changetarget : "Change target trigger"
 [
 	spawnflags(Flags) =
 	[
@@ -1177,7 +1174,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	newtarget(target_destination): "new target for the targetted entity"
 ]
 
-@SolidClass base(Appearflags, Target, Targetname) color(0.5 0.5 0.5) = trigger_hurt : "Hurt trigger"
+@SolidClass base(Appearflags, Targetname) color(0.5 0.5 0.5) = trigger_hurt : "Hurt trigger"
 [
 	spawnflags(Flags) =
 	[
@@ -1214,7 +1211,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 @PointClass base(Appearflags, TargetTriggers) color(0.5 0.5 0.5) size(-8 -8 -8, 8 8 8) = target_crosslevel_target : "Crosslevel Target" []
 @PointClass base(Appearflags, TargetTriggers) color(0.5 0.5 0.5) size(-8 -8 -8, 8 8 8) = target_crosslevel_trigger : "Crosslevel Trigger" []
 
-@PointClass base(Appearflags, Target) color(0 0.5 0.8) size(-8 -8 -8, 8 8 8) = target_laser : "Laser"
+@PointClass base(Appearflags, Targetname) color(0 0.5 0.8) size(-8 -8 -8, 8 8 8) = target_laser : "Laser"
 [
 	spawnflags(Flags) =
 	[
@@ -1291,7 +1288,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	aistate(string): "AI state (see list) for monster to immediately do"
 ]
 
-@PointClass base(Appearflags, Target, Targetname) color(0 1 0.5) size(-8 -8 -8, 8 8 8) = target_speaker : "Speaker"
+@PointClass base(Appearflags, Targetname) color(0 1 0.5) size(-8 -8 -8, 8 8 8) = target_speaker : "Speaker"
 [
 	spawnflags(Flags) =
 	[
@@ -1316,7 +1313,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	max(integer): "0 to 8160 - maximum distance (volume none)"
 ]
 
-@PointClass base(Appearflags, Target, Targetname) color(0 0.5 0.8) size(-8 -8 -8, 8 8 8) = target_effect : "Effect"
+@PointClass base(Appearflags, Targetname) color(0 0.5 0.8) size(-8 -8 -8, 8 8 8) = target_effect : "Effect"
 [
 	spawnflags(Flags) =
 	[
@@ -1930,7 +1927,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 //
 // Decorations (custom)
 //
-@PointClass base(Appearflags, Target, Targetname, Deco) color(1 0 0) size(-16 -16 -16, 16 16 16) model({"path" : model, scale : scale, "frame" : frame})= deco_custom : "Custom decoration"
+@PointClass base(Appearflags, Targetname, Deco) color(1 0 0) size(-16 -16 -16, 16 16 16) model({"path" : model, scale : scale, "frame" : frame})= deco_custom : "Custom decoration"
 [
 	exploding(integer): "0 or 1. same as DECO_EXPLODE spawnflag" : 0
 	model(string): "filename of .dkm model, e.g. models/e1/a_c4.dkm"
@@ -2005,7 +2002,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 //
 // Sound
 //
-@PointClass base(Appearflags, Target, Targetname) color(1 0 1) size(-8 -8 -8, 8 8 8) = sound_ambient : "Ambient Sound"
+@PointClass base(Appearflags, Targetname) color(1 0 1) size(-8 -8 -8, 8 8 8) = sound_ambient : "Ambient Sound"
 [
 	spawnflags(Flags) =
 	[
@@ -2025,7 +2022,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 //
 // Node
 //
-@PointClass base(Appearflags, Target, Targetname) color(0.5 0.5 1) size(-8 -8 -8, 8 8 8) = node_node : "Node"
+@PointClass base(Appearflags, Targetname) color(0.5 0.5 1) size(-8 -8 -8, 8 8 8) = node_node : "Node"
 [
 	number(integer): "the number of this node"
 	link(integer): "the number of the node linked to (can be up to four link fields)"
@@ -2035,7 +2032,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 //
 // Monsters
 //
-@PointClass base(Appearflags, Target, Targetname) color(0.5 0.3 0) size(-8 -8 -8, 8 8 8) = monster_path_corner : "A path corner for a monster to travel along"
+@PointClass base(Appearflags, Targetname) color(0.5 0.3 0) size(-8 -8 -8, 8 8 8) = monster_path_corner : "A path corner for a monster to travel along"
 [
 	target1(target_destination): "Target 1"
 	target2(target_destination): "Target 2"
@@ -2060,12 +2057,12 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 //
 // Items
 //
-@BaseClass base(Appearflags, Target, Sidekickflags) color(0 0.5 0.8) size(-16 -16 -24, 16 16 8) = HealthItems
+@BaseClass base(Appearflags, Targetname, Sidekickflags) color(0 0.5 0.8) size(-16 -16 -24, 16 16 8) = HealthItems
 [
 
 ]
 
-@BaseClass base(Appearflags, Target) = ShieldItems
+@BaseClass base(Appearflags, Targetname) = ShieldItems
 [
 
 ]
