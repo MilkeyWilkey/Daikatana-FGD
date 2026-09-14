@@ -20,10 +20,11 @@
     palette(string) : "texture palette used"
     ambient(integer) : "ambient light"
     fog_value(integer) : "fog on-off/intensity"
-    fog_color(color255) : "rgb color of fog"
+    fog_color(color255) : "rgb color of fog, %f %f %f"
     fog_start(integer) : "start of fog volume"
     fog_end(integer) : "end of fog volume"
-    _color(color255) : "environmental color"
+	fog_skyend(integer) : ""
+    _color(color255) : "environmental color, %f %f %f"
 	episode(choices) : "number of episode" : 1 =
 	[
 		1 : "Episode 1"
@@ -42,7 +43,9 @@
     cloud1speed(integer) : "scrolling speed for layer 1 (default 1)"
     cloud2speed(integer) : "scrolling speed for layer 2 (default 4)"
     cloud2alpha(float) : "translucency of layer 2 (default 0.7, 0 means no layer 2)"
-    lightningfreq(float) : "min seconds between lightning flashes (default 0.25, 0 means no lightning)"    
+    lightningfreq(float) : "min seconds between lightning flashes (default 0.25, 0 means no lightning)"
+	waterdamage(integer) : "set this to disable freezing water effect in Episode 3"
+	NodeFile(string) : "custom node file name. leave blank if using same as map name"
 ]
 
 
@@ -54,6 +57,10 @@
 	target(target_destination) : "Target"
 ]
 
+@BaseClass = Killtarget
+[
+	killtarget(target_destination) : "Killtarget"
+]
 @BaseClass = Targetname
 [
 	targetname(target_source) : "Name"
@@ -185,7 +192,15 @@
 	speak(integer): "Range that the monster can speak to other monsters so they can help out."
 ]
 
-
+@BaseClass base(Appearflags, Target, Targetname, Killtarget) = Trigger
+[
+	health(integer): "amount of damage taken before triggered."
+	delay(float): ""
+	wait(float): ""
+	sound(string): ""
+	message(string): ""
+	mp3(string): ""
+]
 //
 // Debugging
 //
@@ -1096,6 +1111,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	speed(integer): "the velocity to give the object (default 1000)" : 1000
 	sound(string): "the wave to play when triggered"
 	message(string): "text message to display when triggered"
+	angles(string) : "pitch yaw roll direction to push"
 ]
 
 @SolidClass base(Appearflags, Target, Targetname) color(0.5 0.5 0.5) = trigger_teleport : "Teleport trigger"
@@ -1111,6 +1127,8 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	fog_value(integer): "sets fog_value to this when a teleporter is used"
 	killtarget(target_destination): "the targetname of the entity to remove when triggered"
 	message(string): "text message to display when triggered"
+	coop(integer): "set to 1 to only enable it for coop"
+	teleport(target_destination): "targetname of the entity to telport. use 'player' to teleport the player"
 ]
 
 @SolidClass base(Appearflags, Target, Targetname) color(0.5 0.5 0.5) = trigger_once : "triggers once, then removes itself"
@@ -1291,7 +1309,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	sound4(string): "wav file to play, where # represents 1-6 multiple wav files activate random play mode"
 	sound5(string): "wav file to play, where # represents 1-6 multiple wav files activate random play mode"
 	sound6(string): "wav file to play, where # represents 1-6 multiple wav files activate random play mode"
-	delay(integer): "0 default - seconds between random play" : 0
+	delay(integer): "0 default - maximum seconds between random play" : 0
 	mindelay(integer): "0 default - minimum seconds between random playings" : 0
 	volume(float): "0.0 to 1.0"
 	min(integer): "0 to 2040 - minimum distance (volume full)"
@@ -1998,6 +2016,9 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	]
 
 	sound(string): "path to ambient sound (ie. ambience/sound.wav.)"
+	volume(float): "0.0 to 1.0. default 0.5"
+	min(integer): "0 to 2040 - minimum distance (volume full)"
+	max(integer): "0 to 8160 - maximum distance (volume none)"
 ]
 
 
