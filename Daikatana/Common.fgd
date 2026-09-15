@@ -18,7 +18,7 @@
     cinematic_intro(string) : "cinematic scene played when map loads"
     loadscreen(string) : "loading screen"
     palette(string) : "texture palette used"
-    ambient(string) : "ambient light. Arghrad: it's the same as light, _minlight and _ambient, use %f %f %f for color or single value for absolute brightness."
+    ambient(string) : "ambient light. Arghrad: it's the same as light, _minlight and _ambient, use %f %f %f to specify brightness for each color separately (NOT RGB) or single value for absolute brightness."
     fog_value(integer) : "fog on-off/intensity"
     fog_color(color1) : "rgb color of fog, %f %f %f"
     fog_start(integer) : "start of fog volume"
@@ -221,6 +221,26 @@
 //
 @BaseClass = LightStyleFX
 [
+]
+
+@BaseClass base(Appearflags, Targetname) = LightEntity
+[
+	_color(color1) : "RGB Light color"
+	light(integer) : "Intensity of light" : 300
+	falloff(float) : "Rate at which light fades with distance. Only works with linear falloff.  A value less than 1 makes the light fade slower, and a value greater than 1 makes the light fade faster. For example, a value of .5 makes the light fade out half as fast (go twice as far). Same as _fade, wait, _wait for Arghrad" : 1
+	cap(integer) : "Caps the light to this value while preserving travel distance"
+
+// Arghrad properties
+	bounce(integer) : "(Arghrad) Set to 1 for this light to bounce" : 0
+	_angfade(float) : "(Arghrad) Rate at which the light fades as the angle changes. same as _angwait. A value less than 1 makes the light fade slower, and a value greater than 1 makes the light fade faster." : 1
+	_falloff(choices) : "(Arghrad) Type of light falloff" : 0 =
+	[
+		0: "Linear (default)"
+		1: "Inverse falloff"
+		2: "Inverse-square falloff"
+	]
+	
+    lightstyle(string) : "String to define lightstyle. Custom style number required"
 	style(choices) : "Number of style to use, between 0-63" : 0 =
 	[
 		0: "Normal"
@@ -235,26 +255,36 @@
 		9: "Slow Strobe"
 		10: "Fluorescent Flicker"
 		11: "Slow pulse, no black"
-		12: "12 - 63 Custom"
+		12: "12 - 31 Custom"
 	]
 ]
 
-@BaseClass base(Appearflags, LightStyleFX, Targetname) = LightEntity
-[
-]
-
-@PointClass base(Appearflags, LightStyleFX, Targetname) color(0 1 0) size(-8 -8 -8, 8 8 8) = light : "Light"
+@PointClass base(LightEntity) color(0 1 0) size(-8 -8 -8, 8 8 8) = light : "Light"
 [
 	spawnflags(Flags) =
 	[
 		1 : "Start Off" : 0
         2 : "Flare" : 0
 	]
-
-	light(integer) : "Intensity of light" : 300
 	_cone(integer) : "Size of light (spotlight) default: 10"
-    lightstyle(string) : "String to define lightstyle"
-	_color(color) : "RGB Light color"
+	target(target_destination) : "Point to info_null to create a spotlight"
+
+]
+
+@PointClass base(LightEntity) color(0 1 0) size(-8 -8 -8, 8 8 8) = light_spot : "Light Spot"
+[
+	spawnflags(Flags) =
+	[
+		1 : "Start Off" : 0
+        2 : "Flare" : 0
+	]
+	target(target_destination) : "Point to info_null to create a spotlight"
+	angle(integer) : "Angle for spotlight targeting. Use -1 to point straight up, and -2 to straight down"
+	_cone(integer) : "Size of light (spotlight)" : 10
+	_focus(float) : "(Arghrad) Attenuation of light from the center of the spotlight, outward. Bigger the value faster it fades. Recommended to set cone to 90" : 1
+	_spotangle(string) : "(Arghrad) Yaw 0 to 360 and Pitch -90 to 90 for spotlights, %f %f. same as _mangle"
+	_spotvector(string) : "(Arghrad) Direction vector for targeting spotlight, %i %i %i"
+	_spotpoint(string) : "(Arghrad)  Map coordinates for spotlight to point to, %i %i %i"
 ]
 
 @PointClass base(Appearflags) color(0.9 0.9 0.9) size(-8 -8 -8, 8 8 8) = light_flare : "Light (Flare)"
@@ -268,7 +298,7 @@
 	scale(float) : "Sprite model scale" : "1.0"
 ]
 
-@PointClass base(Appearflags, LightStyleFX) color(0 1 0) size(-8 -8 -8, 8 8 8) = light_walltorch : "Light (Walltorch)"
+@PointClass base(LightEntity) color(0 1 0) size(-8 -8 -8, 8 8 8) = light_walltorch : "Light (Walltorch)"
 [
 	spawnflags(Flags) =
 	[
@@ -320,7 +350,7 @@
 	scale(string) : "Amount to scale (%f %f %f)"
 ]
 
-@PointClass base(Appearflags, LightStyleFX) color(0 1 0) size(-8 -8 -8, 8 8 8) = light_strobe : "Light (Strobe)"
+@PointClass base(LightEntity) color(0 1 0) size(-8 -8 -8, 8 8 8) = light_strobe : "Light (Strobe)"
 [
 	spawnflags(Flags) =
 	[
