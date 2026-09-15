@@ -18,13 +18,13 @@
     cinematic_intro(string) : "cinematic scene played when map loads"
     loadscreen(string) : "loading screen"
     palette(string) : "texture palette used"
-    ambient(integer) : "ambient light"
+    ambient(string) : "ambient light. Arghrad: it's the same as light, _minlight and _ambient, use %f %f %f for color or single value for absolute brightness."
     fog_value(integer) : "fog on-off/intensity"
-    fog_color(color255) : "rgb color of fog, %f %f %f"
+    fog_color(color1) : "rgb color of fog, %f %f %f"
     fog_start(integer) : "start of fog volume"
     fog_end(integer) : "end of fog volume"
 	fog_skyend(integer) : ""
-    _color(color255) : "environmental color, %f %f %f"
+    _color(color1) : "environmental color, %f %f %f"
 	episode(choices) : "number of episode" : 1 =
 	[
 		1 : "Episode 1"
@@ -46,6 +46,17 @@
     lightningfreq(float) : "min seconds between lightning flashes (default 0.25, 0 means no lightning)"
 	waterdamage(integer) : "set this to disable freezing water effect in Episode 3"
 	NodeFile(string) : "custom node file name. leave blank if using same as map name"
+	
+// Arghrad properties
+	_sun_light(float) : "(Arghrad) sun brightness. angle must be specified to work. use  _sun2_... and so on for more suns"
+	_sun_diffuse(float) : "(Arghrad) sun diffuse value. should be less than _sun_light. use  _sun2_... and so on for more suns"
+	_sun_difwait(float) : "(Arghrad) sun diffuse fade. A value greater than 1 will make the light fade out faster, while a value less than 1 will slow the rate of fade. For example, a value of .5 would make the diffuse light fade half as fast (go twice as far). Note that the quality of diffuse lighting is linked to patch size, so values greater than 1 may look bad unless you decrease the -chopsky value. same as _sun_diffade. use _sun2_... and so on for more suns"
+	_sun_color(color1) : "(Arghrad) rgb sun light color, %f %f %f. if not set uses sky texture color. use _sun2_... and so on for more suns"
+	_sun(string) : "(Arghrad) spotlight targeted sunlight. same as _sun_target. see arghrad manual. if set overrides _sun_mangle and _sun_vector. use _sun2_... and so on for more suns"
+	_sun_mangle(string) : "(Arghrad) angle the sun light is given, %f %f, yaw 0 to 360 and pitch -90 to 90. same as _sun_angle. overriden by _sun or _sun_target. if set overrides _sun_vector. use _sun2_... and so on for more suns"
+	_sun_vector(string) : "(Arghrad) vector directed sunlight, %f %f %f. overriden by _sun, _sun_target and _sun_mangle. use _sun2_... and so on for more suns"
+	_sun_ambient(string) : "(Arghrad) sun ambient light. either use single value or %f %f %f to set value for each color seaparately (NOT RGB)."
+	_sun_surface(string) : "(Arghrad) additional light brightness from sky surfaces. set to 1 to use surfaces own light value. use %f %f %f from 1 to 255 to specify surface light brightness for each color separatelly, use 0-1 for each to use RGB color"
 ]
 
 
@@ -226,6 +237,10 @@
 		11: "Slow pulse, no black"
 		12: "12 - 63 Custom"
 	]
+]
+
+@BaseClass base(Appearflags, LightStyleFX, Targetname) = LightEntity
+[
 ]
 
 @PointClass base(Appearflags, LightStyleFX, Targetname) color(0 1 0) size(-8 -8 -8, 8 8 8) = light : "Light"
