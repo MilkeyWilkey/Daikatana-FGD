@@ -55,7 +55,7 @@
 
 @BaseClass = Killtarget
 [
-	killtarget(target_destination) : "Killtarget"
+	killtarget(target_destination) : "the targetname of the entity to remove when triggered"
 ]
 @BaseClass = Targetname
 [
@@ -191,11 +191,11 @@
 
 @BaseClass base(Appearflags, Targetname, Killtarget) = Trigger
 [
-	health(integer): "amount of damage taken before triggered."
-	delay(float): ""
-	wait(float): ""
-	sound(string): ""
-	message(string): ""
+	health(integer): "If set, amount of damage taken before triggered."
+	delay(float): "time to wait after activation before firing target"
+	wait(float): "time to wait between retriggering (default = 0.2 seconds)" : "0.2"
+	sound(string): "name of sound to play upon firing"
+	message(string): "text message to display when triggered"
 	mp3(string): ""
 ]
 //
@@ -1128,7 +1128,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	teleport(target_destination): "targetname of the entity to telport. use 'player' to teleport the player"
 ]
 
-@SolidClass base(Appearflags, Targetname) color(0.5 0.5 0.5) = trigger_once : "triggers once, then removes itself"
+@SolidClass base(Trigger) color(0.5 0.5 0.5) = trigger_once : "triggers once, then removes itself"
 [
 	spawnflags(Flags) =
 	[
@@ -1137,15 +1137,10 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 		4: "ALLOW_SIDEKICKS" : 0
 	]
 
-	health(integer): "if set the trigger must be killed to activate"
-	delay(integer): "time to wait after activation before firing target"
-	wait(float): "time to wait between retriggering (default = 0.2 seconds)" : "0.2"
-	sound(string): "name of sound to play upon firing"
-	killtarget(target_destination): "the targetname of the entity to remove when triggered"
-	message(string): "text message to display when triggered"
+	wait(float): "never retriggers, so unused" : "-1"
 ]
 
-@SolidClass base(Appearflags, Targetname) color(0.5 0.5 0.5) = trigger_toggle : "triggers once, then when you exit resets itself to be triggered again"
+@SolidClass base(Trigger) color(0.5 0.5 0.5) = trigger_toggle : "triggers once, then when you exit resets itself to be triggered again"
 [
 	spawnflags(Flags) =
 	[
@@ -1156,15 +1151,12 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	]
 ]
 
-@PointClass base(Appearflags, Targetname) color(0.5 0.5 0.5) size(-8 -8 -8, 8 8 8) = trigger_relay : "Relay trigger"
+@PointClass base(Trigger) color(0.5 0.5 0.5) size(-8 -8 -8, 8 8 8) = trigger_relay : "Relay trigger"
 [
-	sound(string): "name of sound to play upon firing"
-	delay(integer): "delay"
-	killtarget(target_destination): "the targetname of the entity to remove when triggered"
-	message(string): "text message to display when triggered"
+
 ]
 
-@PointClass base(Appearflags, Targetname) color(0.5 0.5 0.5) size(-8 -8 -8, 8 8 8) = trigger_changetarget : "Change target trigger"
+@PointClass base(Targetname) color(0.5 0.5 0.5) size(-8 -8 -8, 8 8 8) = trigger_changetarget : "Change target trigger"
 [
 	spawnflags(Flags) =
 	[
