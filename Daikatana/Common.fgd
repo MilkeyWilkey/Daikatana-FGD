@@ -208,7 +208,7 @@
 
 @BaseClass base(Appearflags, Targetname, Killtarget) = Trigger
 [
-	health(integer): "If set, amount of damage taken before triggered."
+	health(integer): "If set, amount of damage taken to trigger."
 	delay(float): "time to wait after activation before firing target"
 	wait(float): "time to wait between retriggering (default = 0.2 seconds)" : "0.2"
 	sound(string): "name of sound to play upon firing"
@@ -474,7 +474,7 @@
 	gravitydir(string): "Name of target that gravity will be applied towards." : "down"
 	stoptime(integer): "Time for the SFX Particle generator to spit out particles before it completely shuts down"
 	radius(integer): "Radius spread for spawning particles"
-	_color(color255): "Particle color"
+	_color(color1): "Particle color"
 ]
 
 
@@ -1076,7 +1076,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
     message(string): "message to display upon last triggering"
 ]
 
-@SolidClass base(Appearflags, Targetname) color(0.5 0.5 0.5) = trigger_multiple : "Multiple trigger"
+@SolidClass base(Trigger) color(0.5 0.5 0.5) = trigger_multiple : "Multiple trigger"
 [
 	spawnflags(Flags) =
 	[
@@ -1084,10 +1084,6 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 		2: "ALLOW_MONSTERS" : 0
 		4: "ALLOW_SIDEKICKS" : 0
 	]
-
-	health(integer): "if set the trigger must be killed to activate"
-	delay(integer): "time to wait after activation before firing target"
-	wait(float): "time to wait between retriggering (default = 0.2 seconds)" : "0.2"
 ]
 
 @SolidClass base(Appearflags) color(0.5 0.5 0.5) = trigger_sidekick_teleport : "Teleport sidekick"

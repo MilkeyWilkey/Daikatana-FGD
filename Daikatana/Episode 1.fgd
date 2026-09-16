@@ -58,17 +58,23 @@
 [
 	spawnflags(Flags) =
 	[
-		1: "YELLOW" : 0
-		2: "GREEN" : 0
-		4: "BLUE" : 0
-		8: "WHITE" : 0
-		16: "RED" : 0
+		1: "4PRONG" : 0
+		2: "4PRONGO" : 0
+		4: "4PRONGX" : 0
+		8: "4PRONGXO" : 0
+		16: "8PRONGP" : 0
+		32 : "8PRONGPO" : 0
+		64 : "O" : 0
+		128 : "128"
+		256 : "256"
 	]
 
+	_color(color1): "Color of flies"
+	color2(color1): "If set flies will interpolate between two colors"
 	count(integer): "Number of fireflies(Max=10)"
-	distance(integer): "How far the fireflies will fly from point of placement(Max=200)"
-	velocity(integer): "How fast the fireflies will move(Max=200)"
-	scale(float): "How big the fireflies will be<float value>(1 = normal, 0.5 = half, 2 = twice as big)"
+	distance(integer): "How far the fireflies will fly from point of placement(20 to 200)"
+	velocity(integer): "How fast the fireflies will move(1 to 500)"
+	scale(float): "How big the fireflies will be (1 = normal, 0.5 = half, 2 = twice as big)"
 	delta_alpha(float): "frequency of Alpha blending change. <scalar>"
 	alpha_level(float): "Initial Setting for Alpha blending change.<scalar>"
 ]
