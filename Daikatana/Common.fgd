@@ -68,10 +68,16 @@
 [
 	killtarget(target_destination) : "the targetname of the entity to remove when triggered"
 ]
+
 @BaseClass = Targetname
 [
 	targetname(target_source) : "Name"
 	target(target_destination) : "Target"
+]
+
+@BaseClass = Parenttarget
+[
+	parenttarget(target_destination) : "Name of the parent object"
 ]
 
 @BaseClass = Sidekickflags
@@ -287,7 +293,7 @@
 	_spotpoint(string) : "(Arghrad)  Map coordinates for spotlight to point to, %i %i %i"
 ]
 
-@PointClass base(Appearflags) color(0.9 0.9 0.9) size(-8 -8 -8, 8 8 8) = light_flare : "Light (Flare)"
+@PointClass base(LightEntity) color(0.9 0.9 0.9) size(-8 -8 -8, 8 8 8) = light_flare : "Light (Flare)"
 [
 	spawnflags(Flags) =
 	[
@@ -295,7 +301,7 @@
 	]
 	
 	model(string) : "Sprite model name"
-	scale(float) : "Sprite model scale" : "1.0"
+	scale(string) : "Sprite model scale, %f %f %f"
 ]
 
 @PointClass base(LightEntity) color(0 1 0) size(-8 -8 -8, 8 8 8) = light_walltorch : "Light (Walltorch)"
@@ -308,11 +314,13 @@
 	lightstyle(string) : "string to define lightstyle"
 ]
 
-@BaseClass base(Appearflags) color(0 1 0) size(-8 -8 -28, 8 8 8) = EpisodeLight []
+@BaseClass base(LightEntity) color(0 1 0) size(-8 -8 -28, 8 8 8) = EpisodeLight
+[
+	scale(string) : "Amount to scale (%f %f %f)"
+]
 
 @PointClass base(EpisodeLight) = light_e1 : "Light (Episode 1)"
 [
-	scale(string) : "Amount to scale (%f %f %f)"
 ]
 
 @PointClass base(EpisodeLight) = light_e2 : "Light (Episode 2)"
@@ -324,8 +332,6 @@
 		4 : "D2_TORCH2" : 0
 		8 : "D2_TORCH3" : 0
 	]
-
-	scale(string) : "Amount to scale (%f %f %f)"
 ]
 
 @PointClass base(EpisodeLight) = light_e3 : "Light (Episode 3)"
@@ -336,8 +342,6 @@
 		2 : "D3_CANDLE" : 0
 		4 : "D3_FLAMHOLD" : 0
 	]
-
-	scale(string) : "Amount to scale (%f %f %f)"
 ]
 
 @PointClass base(EpisodeLight) = light_e4 : "Light (Episode 4)"
@@ -346,8 +350,6 @@
 	[
 		1 : "D4_BARREL1" : 0
 	]
-
-	scale(string) : "Amount to scale (%f %f %f)"
 ]
 
 @PointClass base(LightEntity) color(0 1 0) size(-8 -8 -8, 8 8 8) = light_strobe : "Light (Strobe)"
@@ -583,7 +585,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	]
 
 	message(string): "printed when the door is touched"
-	angle(integer): "determines the opening direction"
+	angle(integer): "determines the opening direction. -1 straight up, -2 straight down"
 	keyname(string): "if set, the player must have the specified item in their inventory"
 	health(integer): "if set, door must be shot open"
 	speed(integer): "movement speed" : 100
@@ -596,6 +598,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	sound_close_finish(string): "name of the sound to play when closing completes, ie. doors/slam.wav"
 	cinescript(string): "name of the cinematic script to run"
 	aiscript(string): "name of the AI script to run"
+	nodetargetname(string): "name to be targeted by a node"
 ]
 
 @SolidClass base(Appearflags, Targetname) color(0 0.5 0.8) = func_plat : "Platform"
@@ -660,6 +663,8 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	mass(integer): "0 = ignore (default), valid range is 1 = mass of player to 10. NOTE: dust and spawnquake are generated based on mass." : 0
 	dust(integer): "0 = ignore (default), 1 = create a dust cloud when the brush stops" : 0
 	spawnquake(integer): "0 = ignore (default), 1 = spawn a small quake when the brush stops" : 0
+	forcemove(integer): "1 = force move" : 0
+	nodetargetname(string): "name to be targeted by a node"
 ]
 
 @SolidClass base(Appearflags, Targetname) color(0 0.5 0.8) = func_rotate : "Rotate"
@@ -708,7 +713,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	sound_return(string): "the sound to play when the button returns (defaults to none)"
 	speed(integer): "rate of travel when button moves"
 	wait(float): "seconds to wait befor returning to useable (-1 = never return) (default 1.0)" : "1.0"
-	angle(integer): "direction of travel"
+	angle(integer): "direction of travel. -1 straight up, -2 straight down"
 	lip(integer): "amount of button left sticking out after being pushed (default 4)" : 4
 	health(integer): "when > 0 the button must be killed in order to fire"
 	cinescript(string): "name of the cinematic script to run"
@@ -1303,7 +1308,80 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	message(string): "two letters; starting lightlevel and ending lightlevel"
 ]
 
-@PointClass base(Appearflags) color(0 1 1) size(-8 -8 -24, 8 8 8) = target_monster_spawn : "Monster spawn"
+@PointClass base(Appearflags, Targetname) color(0 1 1) size(-8 -8 -24, 8 8 8) 
+	model
+	({{
+			monsterclass == "monster_battleboar"     -> {"path" : "models/e1/m_bboar.dkm"},
+			monsterclass == "monster_cambot"         -> {"path" : "models/e1/m_cambot.dkm"},
+	        monsterclass == "monster_crox"           -> {"path" : "models/e1/m_croco.dkm"},
+	        monsterclass == "monster_cryotech"       -> {"path" : "models/e1/m_cryotech.dkm"},
+	        monsterclass == "monster_deathsphere"    -> {"path" : "models/e1/m_dsphere.dkm"},
+	        monsterclass == "monster_fatworker"      -> {"path" : "models/e1/m_MWFaty.dkm"},
+	        monsterclass == "monster_firefly"        -> {"path" : "models/global/e_flare.sp2"},
+	        monsterclass == "monster_froginator"     -> {"path" : "models/e1/m_frog.dkm", "scale" : "0.65 0.65 0.65" },
+	        monsterclass == "monster_inmater"        -> {"path" : "models/e1/m_inmater.dkm"},
+	        monsterclass == "monster_lasergat"       -> {"path" : "models/e1/m_trakatak.dkm", "scale" : "1.5 1.5 1.5" },
+	        monsterclass == "monster_mishimaguard"   -> {"path" : "models/e1/m_mwguard.dkm"},
+	        monsterclass == "monster_prisoner"       -> {"path" : "models/e1/m_priza.dkm"},
+	        monsterclass == "monster_prisonerb"      -> {"path" : "models/e1/m_prizb.dkm"},
+	        monsterclass == "monster_protopod"       -> {"path" : "models/e1/m_proto.dkm", "scale" : "2.5 2.5 2.5" },
+	        monsterclass == "monster_psyclaw"        -> {"path" : "models/e1/m_psyclaw.dkm"},
+	        monsterclass == "monster_ragemaster"     -> {"path" : "models/e1/m_ragemaster.dkm"},
+	        monsterclass == "monster_rockgat"        -> {"path" : "models/e1/a1_rockgun.dkm"},
+	        monsterclass == "monster_skinnyworker"   -> {"path" : "models/e1/m_MWSkny.dkm"},
+	        monsterclass == "monster_slaughterskeet" -> {"path" : "models/e1/m_skeeter.dkm"},
+	        monsterclass == "monster_sludgeminion"   -> {"path" : "models/e1/m_sludgeminion.dkm"},
+	        monsterclass == "monster_surgeon"        -> {"path" : "models/e1/m_mwsurgeon.dkm"},
+	        monsterclass == "monster_thunderskeet"   -> {"path" : "models/e1/m_tskeet.dkm"},
+	        monsterclass == "monster_venomvermin"    -> {"path" : "models/e1/m_vermin.dkm"},
+			
+			monsterclass == "monster_centurion"      -> {"path" : "models/e2/m_centurion.dkm"},
+			monsterclass == "monster_cerberus"       -> {"path" : "models/e2/m_cerberus.dkm"},
+			monsterclass == "monster_column"         -> {"path" : "models/e2/m_column.dkm", "scale" : "1.5 1.5 1.5"},
+			monsterclass == "monster_cyclops"        -> {"path" : "models/e2/m_cyclops.dkm"},
+			monsterclass == "monster_griffon"        -> {"path" : "models/e2/m_griffon.dkm"},
+			monsterclass == "monster_harpy"          -> {"path" : "models/e2/m_harpy.dkm"},
+			monsterclass == "monster_medusa"         -> {"path" : "models/e2/m_medusa.dkm"},
+			monsterclass == "monster_satyr"          -> {"path" : "models/e2/m_satyr.dkm"},
+			monsterclass == "monster_skeleton"       -> {"path" : "models/e2/m_skeleton.dkm"},
+			monsterclass == "monster_smallspider"    -> {"path" : "models/e2/m_spider.dkm", "scale" : "0.2 0.2 0.2"},
+			monsterclass == "monster_spider"         -> {"path" : "models/e2/m_spider.dkm"},
+			monsterclass == "monster_thief"          -> {"path" : "models/e2/m_thief.dkm", "scale" : "1.5 1.5 1.5"},
+			monsterclass == "monster_ferryman"       -> {"path" : "models/e2/m_ferryman.dkm"},
+			
+			monsterclass == "monster_buboid"         -> {"path" : "models/e3/m_buboid.dkm"},
+			monsterclass == "monster_doombat"        -> {"path" : "models/e3/m_doombat.dkm", "scale" : "0.65 0.65 0.65" },
+			monsterclass == "monster_dragon"         -> {"path" : "models/e3/m_dragon.dkm"},
+			monsterclass == "monster_dwarf"          -> {"path" : "models/e3/m_dwarf.dkm"},
+			monsterclass == "monster_fletcher"       -> {"path" : "models/e3/m_fletcher.dkm"},
+			monsterclass == "monster_garroth"        -> {"path" : "models/e3/m_gharroth.dkm"},
+			monsterclass == "monster_knight1"        -> {"path" : "models/e3/m_knight1.dkm"},
+			monsterclass == "monster_knight2"        -> {"path" : "models/e3/m_knight2.dkm"},
+			monsterclass == "monster_lycanthir"      -> {"path" : "models/e3/m_lycanthir.dkm", "scale" : "1.2 1.2 1.2" },
+			monsterclass == "monster_nharre"         -> {"path" : "models/e3/m_nharre.dkm", "scale" : "1.2 1.2 1.2" },
+			monsterclass == "monster_plague_rat"     -> {"path" : "models/e3/m_prat.dkm"},
+			monsterclass == "monster_rotworm"        -> {"path" : "models/e3/m_rotworm.dkm"},
+			monsterclass == "monster_stavros"        -> {"path" : "models/e3/m_stavros.dkm", "scale" : "1.625 1.625 1.625" },
+			monsterclass == "monster_wyndrax"        -> {"path" : "models/e3/m_wyndrax.dkm"},
+			monsterclass == "monster_priest"         -> {"path" : "models/e3/m_priest.dkm"},
+			monsterclass == "monster_wisp"           -> {"path" : "models/global/e_sflblue.sp2"},
+			
+			monsterclass == "monster_blackprisoner"  -> {"path" : "models/e4/m_bpris.dkm"},
+			monsterclass == "monster_whiteprisoner"  -> {"path" : "models/e4/m_wpris.dkm"},
+			monsterclass == "monster_chaingang"      -> {"path" : "models/e4/m_chgang.dkm"},
+			monsterclass == "monster_femgang"        -> {"path" : "models/e4/m_femgang.dkm"},
+			monsterclass == "monster_labmonkey"      -> {"path" : "models/e4/m_labmonkey.dkm"},
+			monsterclass == "monster_piperat"        -> {"path" : "models/e4/m_piperat.dkm"},
+			monsterclass == "monster_rocketdude"     -> {"path" : "models/e4/m_rockgang.dkm"},
+			monsterclass == "monster_rocketmp"       -> {"path" : "models/e4/m_rocketmp.dkm"},
+			monsterclass == "monster_sealcaptain"    -> {"path" : "models/e4/m_sealcap.dkm"},
+			monsterclass == "monster_sealcommando"   -> {"path" : "models/e4/m_scomndo.dkm"},
+			monsterclass == "monster_sealgirl"       -> {"path" : "models/e4/m_sgirl.dkm"},
+			monsterclass == "monster_shark"          -> {"path" : "models/e4/m_shark.dkm"},
+			monsterclass == "monster_uzigang"        -> {"path" : "models/e4/m_uzi.dkm"},
+			monsterclass == "monster_kage"           -> {"path" : "models/e4/m_kage.dkm"}
+		
+	}}) = target_monster_spawn : "Monster spawn"
 [
 	spawnflags(Flags) =
 	[
@@ -1320,7 +1398,84 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 		1024 : "ALWAYS_GIB" : 0
 	]
 
-	monsterclass(string): "exact classname of monster to spawn"
+	monsterclass(choices) : "Select a monster type" : 0 =
+	[
+		"monster_battleboar"     : "Battleboar"
+		"monster_crox"           : "Crox"
+		"monster_cryotech"       : "Cryotech"
+		"monster_deathsphere"    : "Deathsphere"
+		"monster_froginator"     : "Frogginator"
+		"monster_inmater"        : "Inmater"
+		"monster_lasergat"       : "Lasergat"
+		"monster_mishimaguard"   : "Mishima Guard"
+		"monster_protopod"       : "Protopod"
+		"monster_psyclaw"        : "Psyclaw"
+		"monster_ragemaster"     : "Ragemaster"
+		"monster_rockgat"        : "Rockgat"
+		"monster_slaughterskeet" : "Slaughterskeet"
+		"monster_sludgeminion"   : "Sludgeminion"
+		"monster_thunderskeet"   : "Thunderskeet"
+		"monster_venomvermin"    : "Venomvermim"
+		"monster_firefly"        : "NPC Firefly"
+		"monster_cambot"         : "NPC Cambot"
+		"monster_skinnyworker"   : "NPC Skinnyworker"
+		"monster_fatworker"      : "NPC Fatworker"
+		"monster_prisoner"       : "NPC Prisoner A"
+		"monster_prisonerb"      : "NPC Prisoner B"
+		"monster_surgeon"        : "NPC Surgeon"
+		""                       : "---------------------------------------------:"
+		""                       : "------------------Episode 2-----------------:"
+		""                       : "---------------------------------------------:"
+		"monster_centurion"      : "Centurion"
+		"monster_cerberus"       : "Cerberus"
+		"monster_column"         : "Column"
+		"monster_cyclops"        : "Cyclops"
+		"monster_griffon"        : "Griffon"
+		"monster_harpy"          : "Harpy"
+		"monster_medusa"         : "Medusa"
+		"monster_satyr"          : "Satyr"
+		"monster_skeleton"       : "Skeleton"
+		"monster_smallspider"    : "Small Spider"
+		"monster_spider"         : "Spider"
+		"monster_thief"          : "Thief"
+		"monster_ferryman"       : "NPC Ferryman"
+		""                       : "---------------------------------------------:"
+		""                       : "------------------Episode 3-----------------:"
+		""                       : "---------------------------------------------:"		
+		"monster_buboid"         : "Buboid"
+		"monster_doombat"        : "Doombat"
+		"monster_dwarf"          : "Dwarf"
+		"monster_fletcher"       : "Fletcher"
+		"monster_knight1"        : "Hellfire Paladin"
+		"monster_knight2"        : "Valkyre"
+		"monster_lycanthir"      : "Lycanthir"
+		"monster_plague_rat"     : "Plague Rat"
+		"monster_rotworm"        : "Rotworm"
+		"monster_dragon"         : "Dragon"
+		"monster_stavros"        : "Stavros the Sorcerer"
+		"monster_wyndrax"        : "Wybdrax the Wizard"
+		"monster_nharre"         : "Nharre the Necromancer"
+		"monster_garroth"        : "King Garroth"
+		"monster_priest"         : "NPC Priest"
+		"monster_wisp"           : "NPC Wisp"
+		""                       : "---------------------------------------------:"
+		""                       : "------------------Episode 4-----------------:"	
+		""                       : "---------------------------------------------:"
+		"monster_blackprisoner"  : "Black Prisoner"
+		"monster_whiteprisoner"  : "White Prisoner"
+		"monster_chaingang"      : "Chaingunner"
+		"monster_femgang"        : "Female Gang"
+		"monster_labmonkey"      : "Lab Monkey"
+		"monster_piperat"        : "Pipe Rat"
+		"monster_rocketdude"     : "Rocket Gang"
+		"monster_rocketmp"       : "Rocket MP"
+		"monster_sealcaptain"    : "Seal Captain"
+		"monster_sealcommando"   : "Seal Commando"
+		"monster_sealgirl"       : "Seal Girl"
+		"monster_shark"          : "Shark"
+		"monster_uzigang"        : "Uzi Gang"
+		"monster_kage"           : "Kage"
+	]
 	sound(string): "wave file to play when the monster is spawned"
 	aistate(string): "AI state (see list) for monster to immediately do"
 ]
@@ -1336,7 +1491,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 		16: "START_OFF" : 0
 	]
 
-	sound(string): "wav file to play, where # represents 1-6 multiple wav files activate random play mode"
+	sound(string): "wav file to play, where # represents 1-6 multiple wav files activate random play mode, example global\e_humb.wav"
 	sound1(string): "wav file to play, where # represents 1-6 multiple wav files activate random play mode"
 	sound2(string): "wav file to play, where # represents 1-6 multiple wav files activate random play mode"
 	sound3(string): "wav file to play, where # represents 1-6 multiple wav files activate random play mode"

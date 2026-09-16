@@ -54,7 +54,7 @@
 @PointClass base(Appearflags, MonsterFlags) color(1 0.5 0) size(-16 -16 -24, 16 16 56) model({ "path": "models/e3/m_priest.dkm" }) = monster_priest : "Priest" []
 @PointClass base(Appearflags, MonsterFlags) color(1 0.5 0) size(-16 -16 -24, 16 16 32) model({ "path": "models/e3/m_buboid.dkm" }) = monster_buboid : "Buboid" []
 @PointClass base(Appearflags, MonsterFlags) color(1 0.5 0) size(-12 -12 -8, 12 12 8) model({ "path": "models/e3/m_rotworm.dkm" }) = monster_rotworm : "Rotworm" []
-@PointClass base(Appearflags, MonsterFlags) color(1 0.5 0) size(-16 -16 -16, 16 16 8) model({ "path": "models/e3/m_prat.dkm" }) = monster_plague_rat : "Plague Rat - I broke you!" []
+@PointClass base(Appearflags, MonsterFlags) color(1 0.5 0) size(-16 -16 -16, 16 16 8) model({ "path": "models/e3/m_prat.dkm" }) = monster_plague_rat : "Plague Rat" []
 @PointClass base(Appearflags, MonsterFlags) color(1 0.5 0) size(-8 -8 -8, 8 8 8) model({ "path": "models/global/e_sflblue.sp2" }) = monster_wisp : "Wisp"
 [
 	count(integer): "Number of wisps(Max=10)"
