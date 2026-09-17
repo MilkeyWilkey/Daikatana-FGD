@@ -468,12 +468,12 @@
 	emission(integer): "Emission rate on a per frame basis (!<1 anything <1 will = 1)"
 	emissiontime(integer): "Amount of frames particle Emission occurs"
 	scale(float): "The size of the particles (!< 0.01f !>200.0f)"
-	delta_alpha(float): "The decay rate of the particle's life time"
+	delta_alpha(float): "The decay rate of the particle's life time. Lower means particles travel further"
 	alpha_level(float): "The initial state of the Alpha level"
 	gravity(float): "How much gravity to apply to particles." : "0"
-	gravitydir(string): "Name of target that gravity will be applied towards." : "down"
+	gravitydir(target_destination): "Name of target that gravity will be applied towards." : "down"
 	stoptime(integer): "Time for the SFX Particle generator to spit out particles before it completely shuts down"
-	radius(integer): "Radius spread for spawning particles"
+	radius(integer): "Radius spread for spawning particles. Up to 40"
 	_color(color1): "Particle color"
 ]
 
