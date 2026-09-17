@@ -204,6 +204,7 @@
 	spawnname(string): "classname of entity to throw out upon death."
 	sight(integer): "Range that the monster can see the player and will react."
 	speak(integer): "Range that the monster can speak to other monsters so they can help out."
+	deathtarget(target_destination): "Targetname of the entity to trigger upon death"
 ]
 
 @BaseClass base(Appearflags, Targetname, Killtarget) = Trigger
@@ -422,7 +423,7 @@
 	sound3(string) : "wave file to play when lightning strikes (random if > 1 defined)"
 ]
 
-@SolidClass base(Appearflags) color(1 0.6 0.3) = effect_steam : "Steam Effect"
+@SolidClass base(Appearflags, Targetname) color(1 0.6 0.3) = effect_steam : "Steam Effect"
 [
 	spawnflags(flags) =
 	[
@@ -681,7 +682,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	dmg(integer): "damage to inflict when blocked (2 default)." : 2	
 ]
 
-@SolidClass base(Appearflags, Targetname) color(0 0.5 0.8) = func_wall : "Wall"
+@SolidClass base(Appearflags, Targetname, Killtarget) color(0 0.5 0.8) = func_wall : "Wall"
 [
 	spawnflags(Flags) =
 	[
@@ -694,7 +695,6 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 		64: "CTF_WALL_ONLY" : 0
 	]
 
-	killtarget(target_destination): "the targetname of the entity to remove when triggered"
 	cinescript(string): "name of the cinematic script to run when toggled"
 	aiscript(string): "name of the AI script to run when toggled"
 ]
@@ -757,6 +757,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	speed(integer): "rate of travel from this path_corner to the next"
 	wait(integer): "seconds to wait after the actions on this path_corner are complete"
 	sound(string): "sound to play at this path corner"
+	sound_stop(string): "sound to play when stopping at this pathcorner"
 	x_distance(integer): "distance in degrees to rotate around x axis"
 	y_distance(integer): "distance in degrees to rotate around y axis"
 	z_distance(integer): "distance in degrees to rotate around z axis"
@@ -877,7 +878,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	_color(color255): "use the color selection dialog to select the color of the light"
 ]
 
-@SolidClass base(Appearflags, Targetname) color(0 0.5 0.8) = func_explosive : "Explosive"
+@SolidClass base(Appearflags, Targetname, Killtarget) color(0 0.5 0.8) = func_explosive : "Explosive"
 [
 	spawnflags(Flags) =
 	[
@@ -973,7 +974,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	wait(integer): "Amount of time to wait before allowing the user to esc from display."
 ]
 
-@SolidClass base(Appearflags, Targetname) color(0 0.5 0.8) = func_train : "Train"
+@SolidClass base(Appearflags, Targetname, Killtarget) color(0 0.5 0.8) = func_train : "Train"
 [
 	spawnflags(Flags) =
 	[
@@ -986,8 +987,6 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 		64: "FORCEMOVE" : 0
 		128: "START_ON" : 0
 	]
-
-	killtarget(target_destination): "the targetname of the entity to remove when triggered"
 ]
 
 
@@ -1009,7 +1008,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	triggerindex(integer): "the lower the index, the higher it's priority (i.e. it attracts 1st)."
 ]
 
-@SolidClass base(Appearflags) color(0.5 0.5 0.5) = trigger_changemusic : "Change music"
+@SolidClass base(Appearflags, Targetname) color(0.5 0.5 0.5) = trigger_changemusic : "Change music"
 [
 	path(string): "path to mp3 to play relative to data/music. ( include the extension )."
 	volume(float): "the volume to play the mp3 at ( 0 - 1 )." 
@@ -1018,7 +1017,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 @SolidClass base(Appearflags) color(0.5 0.5 0.5) = trigger_superfly_spawn : "Superfly spawn" []
 @SolidClass base(Appearflags) color(0.5 0.5 0.5) = trigger_mikiko_spawn : "Mikiko spawn" []
 
-@SolidClass base() color(0.5 0.5 0.5) = trigger_script: "Script"
+@SolidClass base(Appearflags,Targetname, Killtarget) color(0.5 0.5 0.5) = trigger_script: "Script"
 [
 	spawnflags(Flags) =
 	[
@@ -1057,10 +1056,8 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	volume(integer): "default 100" : 100
 ]
 
-@SolidClass color(0.5 0.5 0.5) = trigger_secret : "Secret"
+@SolidClass base(Trigger) color(0.5 0.5 0.5) = trigger_secret : "Secret"
 [
-	sound(string): "name of sound to play upon firing"
-	message(string): "message to display upon last triggering"
 ]
 
 @SolidClass base(Appearflags, Targetname) color(0.5 0.5 0.5) = trigger_sidekick : "Sidekick trigger"
@@ -1128,7 +1125,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	cinematic(string): "name of cinematic to play before exiting"
 ]
 
-@SolidClass base(Appearflags) color(0.5 0.5 0.5) = trigger_counter : "Counter"
+@SolidClass base(Appearflags, Targetname) color(0.5 0.5 0.5) = trigger_counter : "Counter"
 [
 	spawnflags(Flags) =
 	[
@@ -1266,7 +1263,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	sound(string): "the looping sound a laser will play when activated."
 ]
 
-@PointClass base(Appearflags) color(0 0.5 0.8) size(-8 -8 -8, 8 8 8) = target_earthquake : "Earthquake"
+@PointClass base(Appearflags, Targetname) color(0 0.5 0.8) size(-8 -8 -8, 8 8 8) = target_earthquake : "Earthquake"
 [
 	speed(integer): "severity/speed of quake"
 	count(integer): "length/duration of quake in seconds"
@@ -1276,7 +1273,7 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	maxs(float): "maxs attenuation end point from earthquake spawn point(end of sound)(default 2024.0f)"
 ]
 
-@PointClass base(Appearflags) color(0 0.5 0.8) size(-8 -8 -8, 8 8 8) = target_spotlight : "Spotlight"
+@PointClass base(Appearflags, Targetname) color(0 0.5 0.8) size(-8 -8 -8, 8 8 8) = target_spotlight : "Spotlight"
 [
 	spawnflags(Flags) =
 	[
@@ -1474,6 +1471,9 @@ style == "2" -> {"path" : "models/e1/hosportal3.dkm", "frame" : 1},
 	]
 	sound(string): "wave file to play when the monster is spawned"
 	aistate(string): "AI state (see list) for monster to immediately do"
+	deathtarget(target_destination): "targetname of an entity to trigger on death"
+	spawnname(string): "a classname of an entity to spawn on death"
+	muniqueid(string): "uniqueid if the monster created"
 ]
 
 @PointClass base(Appearflags, Targetname) color(0 1 0.5) size(-8 -8 -8, 8 8 8) = target_speaker : "Speaker"
